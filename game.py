@@ -22,7 +22,22 @@ class Jeopardy:
     
 
 class JeopardyCatalog:
+    """
+    This class extracts the text file used for the jeopardy game and converts it to extract wanted values
+    
+    Attributes:
+        dictionary (dict): a dictionary of all of questions and the associated answers, points, and subjects
+    """
     def __init__(self, file):
+        """
+        initializes the object and converts the text file to the desired dictionary
+        
+        Args:
+        file (file): the text file that will be used for converting to a dictionary
+        
+        Side effects:
+        adding values to the dictionary attribute
+        """
         self.dictionary = {}
         
         with open(file, "r", encoding="utf-8") as f:
