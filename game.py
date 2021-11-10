@@ -42,6 +42,8 @@ class JeopardyCatalog:
             
             question = dictionary[1]
             
+            del self.dictionary[subject + points]
+            
             return question        
     
     def get_answer(self, subject, points):
