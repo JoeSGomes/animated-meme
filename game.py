@@ -11,6 +11,8 @@ class HumanPlayer:
     
     
 class Jeopardy:
+    def __init__(self, current_points):
+        self.current_points = current_points
         
     
 
