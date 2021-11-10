@@ -7,6 +7,7 @@ class HumanPlayer:
         Args:
             name (Str): The name of the human that will be playing the game. 
         """
+        self.name = name 
     
     
 class Jeopardy:
