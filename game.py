@@ -1,5 +1,6 @@
 class HumanPlayer:
-    
+    def __init__(self) -> None:
+        
     
     
 class Jeopardy:
