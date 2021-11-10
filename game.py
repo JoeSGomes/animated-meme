@@ -11,7 +11,7 @@ class HumanPlayer:
     
     
 class Jeopardy:
-    """This class is run the jeopardy game the player has selected. 
+    """This class is to run the jeopardy game the player has selected. 
     """
     def __init__(self, current_points):
         """This fucntion will hold the current point status of the jeoparty game. 
