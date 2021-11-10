@@ -2,7 +2,7 @@ class HumanPlayer:
     
     
     
-class Jepordy:
+class Jeopardy:
     
     
 
