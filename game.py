@@ -32,7 +32,27 @@ class JeopardyCatalog:
                     math[points] = (question, answer)
                     self.list.append(math)
                 
-                
+    def get_question(self, subject, points):
+        """
+        gets the question from the catalog that is named
+        Args:
+            subject (string): the topic of the user has chosen to answer
+        
+        Returns:
+            the cooresponding question the user has requested
+        
+        Raises:
+            KeyError: if the name of the subject is not in the catalog
+        """
+        if subject not in self.list:
+            raise KeyError ("subject does not exist in the game!")
+        else:
+            dictionary = self.list.get(subject)
+            
+            question_answer_pair = dictionary[points]
+            question = question_answer_pair[0]
+            
+            return question        
     
     
 
