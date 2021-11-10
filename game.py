@@ -1,3 +1,7 @@
+from argparse import ArgumentParser
+
+
+
 class HumanPlayer:
     """ This class will be used throughout the 3 games that will be played by the player. 
     """
@@ -11,7 +15,7 @@ class HumanPlayer:
     
     
 class Jeopardy:
-    """This class is to run the jeopardy game the player has selected. 
+    """This class is run the jeopardy game the player has selected. 
     """
     def __init__(self, current_points):
         """This fucntion will hold the current point status of the jeoparty game. 
@@ -115,3 +119,29 @@ class JeopardyCatalog:
         return points  
 
 class MemoryGame:
+    
+
+
+
+
+
+
+
+
+
+def parse_args(arglist):
+    """ Parse command-line arguments.
+    
+    Expect one mandatory arguments:
+        - filename: a path to a CSV file containing Jeapordy Game's questions, points, and answers
+    
+    Args:
+        arglist (list of str): arguments from the command line.
+    
+    Returns:
+        namespace: the parsed arguments, as a namespace.
+    """
+    parser = ArgumentParser()
+    parser.add_argument("filename",
+                        help="path to CSV file containing questions, points, and answers to the Jeapordy Game")
+    return parser.parse_args(arglist)
