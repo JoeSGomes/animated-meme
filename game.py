@@ -66,15 +66,13 @@ class JeopardyCatalog:
         Raises:
             KeyError: if the name of the subject is not in the catalog
         """
-        if subject not in self.list:
-            raise KeyError ("subject does not exist in the game!")
-        else:
-            dictionary = self.list.get(subject)
+        
+        dictionary = self.list.get(subject)
             
-            question_answer_pair = dictionary[points]
-            question = question_answer_pair[1]
+        question_answer_pair = dictionary[points]
+        answer = question_answer_pair[1]
             
-            return question  
+        return answer  
     
 
 class MemoryGame:
