@@ -1,6 +1,12 @@
 class HumanPlayer:
-    def __init__(self) -> None:
-        
+    """ This class will be used throughout the 3 games that will be played by the player. 
+    """
+    def __init__(self, name): 
+        """This will contain the human player name. 
+
+        Args:
+            name (Str): The name of the human that will be playing the game. 
+        """
     
     
 class Jeopardy:
