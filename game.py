@@ -16,12 +16,11 @@ class JeopardyCatalog:
                 line_list = line_list.split(",")
                 
                 category = line_list[0]
-                descrip_points = line_list[1]
-                points = int(line_list[1])
+                points = line_list[1]
                 question = line_list[2]
                 answer = line_list[3]
 
-                self.dictionary[category + descrip_points] = (points, question, answer)
+                self.dictionary[category + points] = (int(points), question, answer)
                 
     def get_question(self, subject, points):
         """
@@ -35,13 +34,14 @@ class JeopardyCatalog:
         Raises:
             KeyError: if the name of the subject is not in the catalog
         """
-        if subject not in self.list:
+        
+        key = subject + str(points)
+        
+        if key not in self.dictionary:
             raise KeyError ("subject does not exist in the game!")
         else:
-            dictionary = self.dictionary.get(subject + points)
-            
+            dictionary = self.dictionary.get(subject + str(points))
             question = dictionary[1]
-            
             del self.dictionary[subject + points]
             
             return question        
@@ -58,9 +58,8 @@ class JeopardyCatalog:
         Raises:
             KeyError: if the name of the subject is not in the catalog
         """
-        
-        dictionary = self.list.get(subject)
-            
+        key = subject + str(points)
+        dictionary = self.dictionary.get(key)            
         answer = dictionary[2]
             
         return answer  
@@ -78,8 +77,8 @@ class JeopardyCatalog:
             KeyError: if the name of the subject is not in the catalog
         """
         
-        dictionary = self.list.get(subject)
-            
+        key = subject + str(points)        
+        dictionary = self.dictionary.get(key)            
         points = dictionary[0]
             
         return points  
