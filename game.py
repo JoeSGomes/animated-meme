@@ -11,7 +11,14 @@ class HumanPlayer:
     
     
 class Jeopardy:
-    
+    def __init__(self, current_points):
+        """This fucntion will hold the current point status of the jeoparty game. 
+
+        Args:
+            current_points (int): THe current point of the human player. 
+        """
+        self.current_points = current_points
+        
     
 
 class JeopardyCatalog:
