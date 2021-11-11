@@ -62,6 +62,7 @@ class JeopardyCatalog:
         gets the question from the catalog that is named
         Args:
             subject (string): the topic of the user has chosen to answer
+            points(int): the amount of points for the question that the user has chosen to answer
         
         Returns:
             the cooresponding question the user has requested
@@ -86,7 +87,8 @@ class JeopardyCatalog:
         gets the answer from the catalog that is named
         Args:
             subject (string): the topic of the user has chosen to answer
-        
+            points(int): the amount of points for the question that the user has chosen to answer
+            
         Returns:
             the cooresponding answer the user has requested
         
@@ -104,7 +106,8 @@ class JeopardyCatalog:
         gets the points from the catalog that is named
         Args:
             subject (string): the topic of the user has chosen to answer
-        
+            points(int): the amount of points for the question that the user has chosen to answer
+            
         Returns:
             the cooresponding points for the question the user has requested
         
@@ -116,7 +119,20 @@ class JeopardyCatalog:
         dictionary = self.dictionary.get(key)            
         points = dictionary[0]
             
-        return points  
+        return points
+    
+    def update_dictionary(self, subject, points):
+        """
+        updates the dictionary by deleting the question the user chose
+        
+        Args:
+            subject (string): the topic of the user has chosen to answer
+            points(int): the amount of points for the question that the user has chosen to answer
+
+        Side effects:
+            deleting keys and values from the dictionary attribute
+        """
+        del self.dictionary[subject + points] 
 
 class MemoryGame:
     
