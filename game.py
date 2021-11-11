@@ -70,7 +70,6 @@ class JeopardyCatalog:
         Raises:
             KeyError: if the name of the subject is not in the catalog
         """
-        
         key = subject + str(points)
         
         if key not in self.dictionary:
@@ -114,7 +113,6 @@ class JeopardyCatalog:
         Raises:
             KeyError: if the name of the subject is not in the catalog
         """
-        
         key = subject + str(points)        
         dictionary = self.dictionary.get(key)            
         points = dictionary[0]
@@ -133,6 +131,7 @@ class JeopardyCatalog:
             deleting keys and values from the dictionary attribute
         """
         del self.dictionary[subject + points] 
+
 
 class MemoryGame:
     
