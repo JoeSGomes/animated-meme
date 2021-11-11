@@ -1,5 +1,15 @@
 from argparse import ArgumentParser
 
+# GAMESWON = 0 
+# GAMESATTEMPTED = 0 
+
+# def play_jeopardy: 
+#     if you win the gam: 
+#         GAMESWON +=1
+#         GAMESATTEMPTED += 1
+#     elif you lose the game: 
+#         GAMESATTEMPTED += 1
+    
 
 class HumanPlayer:
     """ This class will be used throughout the 3 games that will be played by the player. 
@@ -132,8 +142,38 @@ class JeopardyCatalog:
         del self.dictionary[subject + points] 
 
 
-class MemoryGame:
     
+class MemoryGame:
+  
+  
+class GuessNumber:   
+
+    
+
+
+# def main (): 
+#     games_won = 0 
+#     games_attempted = 0 
+    
+#     while games_won < 3 and games_attempted <= 3:
+#         choice = input("What game do you want to play? ")
+#         if choice == "Jeopardy": 
+#             game = Jeopardy()
+#             game.play_jeopardy()
+#             games_attempted += 1 
+            
+#         elif choice == "Memory Game": 
+#             game = MemoryGame()
+#             game.play_memory_game()
+#             games_attempted += 1 
+        
+#         elif choice == "Guess the Number": 
+#             game = GuessNumber()
+#             game.play_guess_number()
+#             games_attempted += 1 
+        
+#         else: 
+#             raise ValueError ("Sorry, that is not a valid game, try again!")
 
 
 def parse_args(arglist):
