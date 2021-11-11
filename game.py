@@ -1,7 +1,6 @@
 from argparse import ArgumentParser
 
 
-
 class HumanPlayer:
     """ This class will be used throughout the 3 games that will be played by the player. 
     """
@@ -135,13 +134,6 @@ class JeopardyCatalog:
 
 class MemoryGame:
     
-
-
-
-
-
-
-
 
 
 def parse_args(arglist):
