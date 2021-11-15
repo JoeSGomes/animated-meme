@@ -140,6 +140,10 @@ class JeopardyCatalog:
     
 class MemoryGame:
    
+    
+  
+class GuessNumber:   
+    
     def hints(counter, number): 
 	
         if counter ==  1: 
@@ -153,9 +157,6 @@ class MemoryGame:
         
         else:
             print(f"You already used your guesses. Reminder number is between {number - 5} and 	{number + 5}")
-
-  
-class GuessNumber:   
 
     
 
