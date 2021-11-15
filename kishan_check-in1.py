@@ -94,26 +94,6 @@ class JeopardyCatalog:
         del self.dictionary[subject][points]
         
         return int(points)
-    
-        
-    
-    # def update_dictionary(self, subject, points):
-    #     """
-    #     updates the dictionary by deleting the question the user chose
-        
-    #     Args:
-    #         subject (string): the topic of the user has chosen to answer
-    #         points(int): the amount of points for the question that the user has chosen to answer
-
-    #     Side effects:
-    #         deleting keys and values from the dictionary attribute
-    #     """
-        
-    #     values = self.dictionary.get(subject)
-    #     values.pop(points)
-        
-    #     self.dictionary[subject] = values
-        
 
 def main(filename):
     catalog = JeopardyCatalog(filename)
