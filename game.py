@@ -34,6 +34,10 @@ class Jeopardy:
         """
         self.current_points = current_points
     
+        
+        
+    #def play_jeopardy_game(self, current_points): 
+        
 
 class JeopardyCatalog:
     """
@@ -133,13 +137,11 @@ class JeopardyCatalog:
         return int(points)
 
 
-
     
 class MemoryGame:
 
   
 class GuessNumber:   
-
 
 
 # def main (): 
