@@ -33,7 +33,7 @@ class Jeopardy:
             current_points (int): THe current point of the human player. 
         """
         self.current_points = current_points
-        
+    
 
 class JeopardyCatalog:
     """
@@ -148,7 +148,6 @@ class MemoryGame:
   
 class GuessNumber:   
 
-    
 
 
 # def main (): 
