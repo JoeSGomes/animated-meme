@@ -33,10 +33,7 @@ class Jeopardy:
             current_points (int): THe current point of the human player. 
         """
         self.current_points = current_points
-        
-        
-    def play_jeopardy_game(self, current_points): 
-        
+    
 
 class JeopardyCatalog:
     """
@@ -56,7 +53,9 @@ class JeopardyCatalog:
         adding values to the dictionary attribute
         """
         self.dictionary = {}
-        self.value_dictionary = {}
+        pop_culture = {}
+        history = {}
+        math = {}
         
         with open(file, "r", encoding="utf-8") as f:
             for line in f:
@@ -67,19 +66,18 @@ class JeopardyCatalog:
                 points = line_list[1]
                 question = line_list[2]
                 answer = line_list[3]
-
-                self.value_dictionary[int(points)] = (question, answer)
-                self.dictionary[category] = self.value_dictionary
+                
+                if category == "Pop Culture":
+                    pop_culture[int(points)] = (question, answer)
+                elif category == "History":
+                    history[int(points)] = (question, answer)
+                elif category == "Math":
+                    math[int(points)] = (question, answer)
+                    
+            self.dictionary["Pop Culture"] = pop_culture
+            self.dictionary["Math"] = math
+            self.dictionary["History"] = history
          
-    def available_questions(self, subject):
-        place = self.dictionary.get(subject)
-        keys = place.keys()
-        l = []
-        for i in keys:
-            l.append(i)
-        return f'{subject} Questions Available: {l}'
-        
-            
     def get_question(self, subject, points):
         """
         gets the question from the catalog that is named
@@ -95,12 +93,10 @@ class JeopardyCatalog:
         """
         
         
-        if subject[points] not in self.dictionary:
-            raise KeyError ("question does not exist in the game!")
-        else:
-            question = self.dictionary[subject][points][0]
-            
-            return question        
+        #return question
+        question = self.dictionary[subject][points][0]
+                  
+        return question        
     
     def get_answer(self, subject, points):
         """
@@ -119,7 +115,7 @@ class JeopardyCatalog:
             
         return answer  
     
-    def get_points(self, points):
+    def get_points(self, subject, points):
         """
         gets the points from the catalog that is named
         Args:
@@ -132,22 +128,10 @@ class JeopardyCatalog:
         Raises:
             KeyError: if the name of the subject is not in the catalog
         """
-        
-        return points
-        
-    
-    def update_dictionary(self, subject, points):
-        """
-        updates the dictionary by deleting the question the user chose
-        
-        Args:
-            subject (string): the topic of the user has chosen to answer
-            points(int): the amount of points for the question that the user has chosen to answer
-
-        Side effects:
-            deleting keys and values from the dictionary attribute
-        """
         del self.dictionary[subject][points]
+        
+        return int(points)
+
 
 
     
