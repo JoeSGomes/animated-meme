@@ -53,6 +53,7 @@ class JeopardyCatalog:
         adding values to the dictionary attribute
         """
         self.dictionary = {}
+        value_dictionary = {}
         
         with open(file, "r", encoding="utf-8") as f:
             for line in f:
@@ -64,7 +65,8 @@ class JeopardyCatalog:
                 question = line_list[2]
                 answer = line_list[3]
 
-                self.dictionary[category + points] = (int(points), question, answer)
+                value_dictionary[int(points)] = (question, answer)
+                self.dictionary[category] = value_dictionary
                 
     def get_question(self, subject, points):
         """
@@ -79,14 +81,12 @@ class JeopardyCatalog:
         Raises:
             KeyError: if the name of the subject is not in the catalog
         """
-        key = subject + str(points)
         
-        if key not in self.dictionary:
-            raise KeyError ("subject does not exist in the game!")
+        
+        if subject[points] not in self.dictionary:
+            raise KeyError ("question does not exist in the game!")
         else:
-            dictionary = self.dictionary.get(subject + str(points))
-            question = dictionary[1]
-            del self.dictionary[subject + points]
+            question = self.dictionary[subject][points][0]
             
             return question        
     
@@ -103,13 +103,11 @@ class JeopardyCatalog:
         Raises:
             KeyError: if the name of the subject is not in the catalog
         """
-        key = subject + str(points)
-        dictionary = self.dictionary.get(key)            
-        answer = dictionary[2]
+        answer = self.dictionary[subject][points][1]
             
         return answer  
     
-    def get_points(self, subject, points):
+    def get_points(self, points):
         """
         gets the points from the catalog that is named
         Args:
@@ -122,10 +120,7 @@ class JeopardyCatalog:
         Raises:
             KeyError: if the name of the subject is not in the catalog
         """
-        key = subject + str(points)        
-        dictionary = self.dictionary.get(key)            
-        points = dictionary[0]
-            
+        
         return points
     
     def update_dictionary(self, subject, points):
@@ -139,12 +134,12 @@ class JeopardyCatalog:
         Side effects:
             deleting keys and values from the dictionary attribute
         """
-        del self.dictionary[subject + points] 
+        del self.dictionary[subject][points]
 
 
     
 class MemoryGame:
-  
+
   
 class GuessNumber:   
 
