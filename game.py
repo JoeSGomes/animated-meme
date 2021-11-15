@@ -122,7 +122,7 @@ class JeopardyCatalog:
         """
         
         return points
-        #test
+        
     
     def update_dictionary(self, subject, points):
         """
