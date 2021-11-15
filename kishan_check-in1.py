@@ -16,7 +16,9 @@ class JeopardyCatalog:
         adding values to the dictionary attribute
         """
         self.dictionary = {}
-        value_dictionary = {}
+        pop_culture = {}
+        history = {}
+        math = {}
         
         with open(file, "r", encoding="utf-8") as f:
             for line in f:
@@ -27,10 +29,18 @@ class JeopardyCatalog:
                 points = line_list[1]
                 question = line_list[2]
                 answer = line_list[3]
-
-                value_dictionary[int(points)] = (question, answer)
-                self.dictionary[category] = value_dictionary
                 
+                if category == "Pop Culture":
+                    pop_culture[int(points)] = (question, answer)
+                elif category == "History":
+                    history[int(points)] = (question, answer)
+                elif category == "Math":
+                    math[int(points)] = (question, answer)
+                    
+            self.dictionary["Pop Culture"] = pop_culture
+            self.dictionary["Math"] = math
+            self.dictionary["History"] = history
+         
     def get_question(self, subject, points):
         """
         gets the question from the catalog that is named
@@ -46,9 +56,9 @@ class JeopardyCatalog:
         """
         
         
-
+        #return question
         question = self.dictionary[subject][points][0]
-            
+                  
         return question        
     
     def get_answer(self, subject, points):
@@ -68,7 +78,7 @@ class JeopardyCatalog:
             
         return answer  
     
-    def get_points(self, points):
+    def get_points(self, subject, points):
         """
         gets the points from the catalog that is named
         Args:
@@ -81,35 +91,52 @@ class JeopardyCatalog:
         Raises:
             KeyError: if the name of the subject is not in the catalog
         """
+        del self.dictionary[subject][points]
         
-        return points
+        return int(points)
+    
         
     
-    def update_dictionary(self, subject, points):
-        """
-        updates the dictionary by deleting the question the user chose
+    # def update_dictionary(self, subject, points):
+    #     """
+    #     updates the dictionary by deleting the question the user chose
         
-        Args:
-            subject (string): the topic of the user has chosen to answer
-            points(int): the amount of points for the question that the user has chosen to answer
+    #     Args:
+    #         subject (string): the topic of the user has chosen to answer
+    #         points(int): the amount of points for the question that the user has chosen to answer
 
-        Side effects:
-            deleting keys and values from the dictionary attribute
-        """
-        del self.dictionary[subject][points]
+    #     Side effects:
+    #         deleting keys and values from the dictionary attribute
+    #     """
+        
+    #     values = self.dictionary.get(subject)
+    #     values.pop(points)
+        
+    #     self.dictionary[subject] = values
         
 
 def main(filename):
     catalog = JeopardyCatalog(filename)
     
+    print()
+    print("Origional Dictionary: \n")
     print(catalog.dictionary)
-    print(catalog.get_question("History", 500))
+    print("\n\n")
 
-    print(catalog.get_answer("History", 500))    
-    print(catalog.get_points(500))
+    question = catalog.get_question("Pop Culture", 500)
+    print("Question:", question)
     
-    print(catalog.update_dictionary("History", 500))
+    answer = catalog.get_answer("Pop Culture", 500)
+    print("Answer:", answer) 
+    
+    points = catalog.get_points("Pop Culture", 500)
+    print("Points:", points)
+    
+    print("\n\n")
+
+    print("New Dictionary: With Question Removed\n")
     print(catalog.dictionary)
+    print("\n\n")
 
 
 main("jeopardy.txt")
