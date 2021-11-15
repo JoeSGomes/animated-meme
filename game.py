@@ -33,7 +33,10 @@ class Jeopardy:
             current_points (int): THe current point of the human player. 
         """
         self.current_points = current_points
-    
+        
+        
+    def play_jeopardy_game(self, current_points): 
+        
 
 class JeopardyCatalog:
     """
@@ -53,7 +56,7 @@ class JeopardyCatalog:
         adding values to the dictionary attribute
         """
         self.dictionary = {}
-        value_dictionary = {}
+        self.value_dictionary = {}
         
         with open(file, "r", encoding="utf-8") as f:
             for line in f:
@@ -65,9 +68,18 @@ class JeopardyCatalog:
                 question = line_list[2]
                 answer = line_list[3]
 
-                value_dictionary[int(points)] = (question, answer)
-                self.dictionary[category] = value_dictionary
-                
+                self.value_dictionary[int(points)] = (question, answer)
+                self.dictionary[category] = self.value_dictionary
+         
+    def available_questions(self, subject):
+        place = self.dictionary.get(subject)
+        keys = place.keys()
+        l = []
+        for i in keys:
+            l.append(i)
+        return f'{subject} Questions Available: {l}'
+        
+            
     def get_question(self, subject, points):
         """
         gets the question from the catalog that is named
