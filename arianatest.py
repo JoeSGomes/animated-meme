@@ -25,8 +25,14 @@ class MemoryGame:
         print("\n")
         print("\n")
         print("\n")
-        
     def questions(self, i, q, a):
+      """
+      allows user to answer five questions to throw them off reciting the words from memory
+      Args:
+        i(int): index for word in words
+        q(string): question for the user to answer
+        a(string): correct answer
+      """
       qa = input(q)
       questions_tally = 0
       words_tally = 0
