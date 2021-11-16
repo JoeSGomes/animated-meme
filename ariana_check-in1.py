@@ -104,3 +104,4 @@ class MemoryGame:
 words = "apple", "orange", "banana", "tomato", "grape"
 interval = 2
 mg = MemoryGame(words, interval)
+mg
