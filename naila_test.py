@@ -56,21 +56,51 @@ class GuessTheNumber:
             Prints a hint to the standard output
             Updates the number of hints left
         """
-        if self.hints_left ==  3: 
-            print (f"Number is between {target_number - 20} and {target_number + 20}\n")
+        
+        if self.hints_left ==  3:
+            upper = target_number + 20
+            lower = target_number - 20 
+            
+            if upper > 50:
+                upper = 50
+            if lower < 0:
+                lower = 0
+                
+            print (f"Number is between {lower} and {upper}\n")
             self.hints_left -= 1
         
         elif self.hints_left == 2:
-            print (f"Number is between {target_number - 10} and {target_number + 10}\n")
+            upper = target_number + 10
+            lower = target_number - 10 
+            
+            if upper > 50:
+                upper = 50
+            if lower < 0:
+                lower = 0
+            print (f"Number is between {lower} and {upper}\n")
             self.hints_left -= 1
             
         
         elif self.hints_left == 1:
-            print (f"Number is between {target_number - 5} and {target_number + 5}\n")
+            upper = target_number + 5
+            lower = target_number - 5 
+            
+            if upper > 50:
+                upper = 50
+            if lower < 0:
+                lower = 0
+            print (f"Number is between {lower} and {upper}\n")
             self.hints_left -= 1
         
         else:
-            print(f"You already used your guesses. Reminder number is between {target_number - 5} and 	{target_number + 5}")
+            upper = target_number + 5
+            lower = target_number - 5 
+            
+            if upper > 50:
+                upper = 50
+            if lower < 0:
+                lower = 0
+            print(f"You already used your guesses. Reminder number is between {lower} and {upper}")
         # if self.hints_left == 0:
         #     print("You ran out of hints, sorry!")
         # else:
