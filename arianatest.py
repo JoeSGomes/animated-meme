@@ -25,6 +25,7 @@ class MemoryGame:
         print("\n")
         print("\n")
         print("\n")
+        
     def questions(self, i, q, a):
       qa = input(q)
       questions_tally = 0
