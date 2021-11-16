@@ -137,7 +137,6 @@ class JeopardyCatalog:
         del self.dictionary[subject][points]
 
 
-    
 import sys
 import time
 
@@ -245,7 +244,6 @@ words = "apple", "orange", "banana", "tomato", "grape"
 interval = 2
 mg = MemoryGame(words, interval)
    
-    
   
 class GuessNumber:   
     """
@@ -310,7 +308,6 @@ class GuessNumber:
             print(f"You already used your guesses. Reminder number is between {number - 5} and 	{number + 5}")
 
     
-
 
 # def main (): 
 #     games_won = 0 

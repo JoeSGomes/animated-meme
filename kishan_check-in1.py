@@ -41,82 +41,14 @@ class JeopardyCatalog:
             self.dictionary["Math"] = math
             self.dictionary["History"] = history
          
-    def get_question(self, subject, points):
-        """
-        gets the question from the catalog that is named
-        Args:
-            subject (string): the topic of the user has chosen to answer
-            points(int): the amount of points for the question that the user has chosen to answer
-        
-        Returns:
-            the cooresponding question the user has requested
-        
-        Raises:
-            KeyError: if the name of the subject is not in the catalog
-        """
-        
-        
-        #return question
-        question = self.dictionary[subject][points][0]
-                  
-        return question        
-    
-    def get_answer(self, subject, points):
-        """
-        gets the answer from the catalog that is named
-        Args:
-            subject (string): the topic of the user has chosen to answer
-            points(int): the amount of points for the question that the user has chosen to answer
-            
-        Returns:
-            the cooresponding answer the user has requested
-        
-        Raises:
-            KeyError: if the name of the subject is not in the catalog
-        """
-        answer = self.dictionary[subject][points][1]
-            
-        return answer  
-    
-    def get_points(self, subject, points):
-        """
-        gets the points from the catalog that is named
-        Args:
-            subject (string): the topic of the user has chosen to answer
-            points(int): the amount of points for the question that the user has chosen to answer
-            
-        Returns:
-            the cooresponding points for the question the user has requested
-        
-        Raises:
-            KeyError: if the name of the subject is not in the catalog
-        """
-        del self.dictionary[subject][points]
-        
-        return int(points)
 
 def main(filename):
     catalog = JeopardyCatalog(filename)
     
     print()
-    print("Origional Dictionary: \n")
+    print("Dictionary in Easy Access Format: \n")
     print(catalog.dictionary)
-    print("\n\n")
 
-    question = catalog.get_question("Pop Culture", 500)
-    print("Question:", question)
-    
-    answer = catalog.get_answer("Pop Culture", 500)
-    print("Answer:", answer) 
-    
-    points = catalog.get_points("Pop Culture", 500)
-    print("Points:", points)
-    
-    print("\n\n")
-
-    print("New Dictionary: With Question Removed\n")
-    print(catalog.dictionary)
-    print("\n\n")
 
 
 main("jeopardy.txt")
