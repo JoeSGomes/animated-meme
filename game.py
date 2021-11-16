@@ -83,7 +83,7 @@ class JeopardyCatalog:
         l = []
         for i in keys:
             l.append(i)
-        return f'{subject} Questions Available: {l}'  
+        return f'{subject} Questions Available: {l}'
                 
     def get_question(self, subject, points):
         """
