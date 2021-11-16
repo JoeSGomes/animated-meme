@@ -51,6 +51,7 @@ class MemoryGame:
               
       if wa.lower() == self.words[i]:
           print("You got it right! Onto the next word...")
+      return "\n"
 
 
                 
