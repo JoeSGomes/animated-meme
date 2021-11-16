@@ -286,7 +286,8 @@ class GuessNumber:
             print("You ran out of tries; better luck next time!")
     
     def hints(counter, number): 
-        '''this method gives 3 separate hints for player if requested
+        '''
+        this method gives 3 separate hints for player if requested
         
         Args: 
             counter(int): counter starts at 0, each time player prompts 'hint' 1 is added to counter to
