@@ -11,13 +11,13 @@ class MemoryGame:
     def __init__(self, words, t):
         self.words = words
         self.t = t
-    def display_words(self, index):
+    def display_words(self):
         """
         displays  five words for the player to memorize, separated by t sec intervals
         Args:
             index(int): location of the word we are referring to in words
         """
-        print(self.words[index])
+        print(self.words[0])
         time.sleep(self.t)
         print("\n")
         print("\n")
@@ -25,58 +25,131 @@ class MemoryGame:
         print("\n")
         print("\n")
         print("\n")
-    def questions(self, i, q, a):
-      qa = input(q)
-      questions_tally = 0
-      words_tally = 0
+        print("\n")
+        print("\n")
 
-      while qa.lower() != a or qa != a:
-        questions_tally =  questions_tally - 1
-        qa = input(q)
+        print(self.words[1])
+        time.sleep(self.t)
+        print("\n")
+        print("\n")
+        print("\n")
+        print("\n")
+        print("\n")
+        print("\n")
+        print("\n")
+        print("\n")
 
-      if qa.lower() == a:
-          wa = input("What was the word? ")
-          while wa.lower() != self.words[i]:
-              words_tally = words_tally - 1
-              print("Sorry, that was incorrect, please try again!")
-              print(f'You have {words_tally} questions left')
-              wa = input("What was the word? ")
-              
-      if wa.lower() == self.words[i]:
-          print("You got it right! Onto the next word...")
+        print(self.words[2])
+        time.sleep(self.t)
+        print("\n")
+        print("\n")
+        print("\n")
+        print("\n")
+        print("\n")
+        print("\n")
+        print("\n")
+        print("\n")
 
+        print(self.words[3])
+        time.sleep(self.t)
+        print("\n")
+        print("\n")
+        print("\n")
+        print("\n")
+        print("\n")
+        print("\n")
+        print("\n")
+        print("\n")
 
+        print(self.words[4])
+        time.sleep(self.t)
+        print("\n")
+        print("\n")
+        print("\n")
+        print("\n")
+        print("\n")
+        print("\n")
+        print("\n")
+        print("\n")
+
+    def questions(self):
+        """
+        after each successful guess of a word, generates new question for player 
+        to answer. 
+        Args:
+            qs(list): questions for player to answer
+        """
+        questions_tally = 3
+        words_tally = 3
+        while questions_tally != 0:
+            qa1 = input("What is  the first element in the periodic table? ")
+            if qa1.lower() == "hydrogen":
+                wa1 = input("What was the first word? ")
+                if wa1 == self.words[0]:
+                    print("Correct!")
+                else:
+                    words_tally = words_tally - 1
+                    print(f"Incorrect you have {words_tally} chances left")
+            else:
+                questions_tally = questions_tally - 1
+                print("Incorrect - answer was Hydrogen")
+                print(f"You have {questions_tally} left")
                 
-words = ["apple", "orange", "banana", "tomato", "grape"]
-q1 = "What is  the first element in the periodic table? "
-a1 = "hydrogen"
-q2 = "What is the last letter of the alphabet? "
-a2 = "z"
-q3 = "Who was the second president of the United States? "
-a3 = "john adams"
-q4 = "What shape is generally used for stop signs? "
-a4 = "octagon"
-q5 = "How many continents are there on Earth? "
-a5 = "seven"
-
+            qa2 = input("What is the last letter of the alphabet? ")
+            if qa2.lower() == "z":
+                wa2 = input("What was the second word? ")
+                if wa2 == self.words[1]:
+                    print("Correct!")
+                else:
+                    words_tally = words_tally - 1
+                    print(f"Incorrect you have {words_tally} chances left")
+            else:
+                questions_tally = questions_tally - 1
+                print("Incorrect - answer was 1")
+                print(f"You have {questions_tally} left")
+                
+            qa3 = input("Who was the second president of the United States? ")
+            if qa3.lower() == "john adams":
+                wa3 = input("What was the third word? ")
+                if wa3 == self.words[2]:
+                    print("Correct!")
+                else:
+                    words_tally = words_tally - 1
+                    print(f"Incorrect you have {words_tally} chances left")
+            else:
+                questions_tally = questions_tally - 1
+                print("Incorrect - answer was John Adams")
+                print(f"You have {questions_tally} left")
+            
+            qa4 = input("What shape is generally used for stop signs? ")
+            if qa4.lower() == "octagon":
+                wa4 = input("What was the fourth word? ")
+                if wa4 == self.words[3]:
+                    print("Correct!")
+                else:
+                    words_tally = words_tally - 1
+                    print(f"Incorrect you have {words_tally} chances left")
+            else:
+                questions_tally = questions_tally - 1
+                print("Incorrect - answer was an octagon")
+                print(f"You have {questions_tally} left")
+                
+            qa5 = input("Who won the 2021 World Series? ")
+            if qa5.lower() == "braves":
+                wa5 = input("What was the fifth word? ")
+                if wa5 == self.words[4]:
+                    print("Correct!")
+                else:
+                    words_tally = words_tally - 1
+                    print(f"Incorrect you have {words_tally} chances left")
+            else:
+                questions_tally = questions_tally - 1
+                print("Incorrect - answer was 7")
+                print(f"You have {questions_tally} left")      
+                
+words = "apple", "orange", "banana", "tomato", "grape"
+interval = 2
 mg = MemoryGame(words, interval)
 
-print(mg.display_words(0))
-question_set1 = mg.questions(0, q1, a1)
-print(question_set1)
-
-print(mg.display_words(1))
-question_set2 = mg.questions(0, q2, a2)
-print(question_set2)
-
-print(mg.display_words(2))
-question_set3 = mg.questions(0, q3, a3)
-print(question_set3)
-
-print(mg.display_words(3))
-question_set4 = mg.questions(0, q4, a4)
-print(question_set4)
-
-print(mg.display_words(4))
-question_set1 = mg.questions(0, q5, a5)
-print(question_set5)
+print(mg.display_words())
+print(mg.questions())
