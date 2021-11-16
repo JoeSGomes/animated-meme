@@ -72,7 +72,7 @@ a4 = "octagon"
 q5 = "Who won the 2021 World Series? "
 a5 = "braves"
 
-mg = MemoryGame(words, 3)
+mg = MemoryGame(words, 1)
 
 print(mg.display_words(0))
 question_set1 = mg.questions(0, q1, a1)
