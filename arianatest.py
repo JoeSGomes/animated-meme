@@ -36,7 +36,7 @@ class MemoryGame:
         questions_tally = 0
         words_tally = 0
 
-        while questions_tally > 0 and words_tally:
+        while questions_tally > 0 or words_tally:
             while qa.lower() != a or qa != a:
                 questions_tally =  questions_tally - 1
             qa = input(q)
