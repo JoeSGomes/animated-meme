@@ -1,10 +1,10 @@
 def available_questions(subject):
-    """This method will be used to check which questions are available and from there, this will be displayed to the user.
+    """This method will be used to check which questions are available and from the dictionary, this will be displayed to the user.
 
-    Args:
-        subject (string): The subject is the type of question that can be choosen. For example, the subject here is pop culture, math, history. 
+        Args:
+        subject (string): The subject is the type of question that can be choosen. 
 
-    Returns:
+        Returns:
         [Str]: The list of available key left after the ones that have been said correspoinding the subject of the question. 
     """
     dictionary = {'Pop Culture': {500: ('How many kids does Angelina Jolie have?', '6'),  
