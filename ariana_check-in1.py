@@ -14,8 +14,6 @@ class MemoryGame:
     def display_words(self):
         """
         displays  five words for the player to memorize, separated by t sec intervals
-        Args:
-            index(int): location of the word we are referring to in words
         """
         print(self.words[0])
         time.sleep(self.t)
@@ -75,9 +73,7 @@ class MemoryGame:
     def questions(self):
         """
         after each successful guess of a word, generates new question for player 
-        to answer. 
-        Args:
-            qs(list): questions for player to answer
+        to answer
         """
         questions_tally = 3
         words_tally = 3
