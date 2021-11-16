@@ -17,7 +17,7 @@ class MemoryGame:
         Args:
             index(int): location of the word we are referring to in words
         """
-        print(self.words[index])
+        print(self.words[0])
         time.sleep(self.t)
         print("\n")
         print("\n")
@@ -25,6 +25,43 @@ class MemoryGame:
         print("\n")
         print("\n")
         print("\n")
+        
+        print(self.words[1])
+        time.sleep(self.t)
+        print("\n")
+        print("\n")
+        print("\n")
+        print("\n")
+        print("\n")
+        print("\n")
+        
+        print(self.words[2])
+        time.sleep(self.t)
+        print("\n")
+        print("\n")
+        print("\n")
+        print("\n")
+        print("\n")
+        print("\n")
+        
+        print(self.words[3])
+        time.sleep(self.t)
+        print("\n")
+        print("\n")
+        print("\n")
+        print("\n")
+        print("\n")
+        print("\n")
+        
+        print(self.words[4])
+        time.sleep(self.t)
+        print("\n")
+        print("\n")
+        print("\n")
+        print("\n")
+        print("\n")
+        print("\n")
+        
     def questions(self):
         """
         after each successful guess of a word, generates new question for player 
