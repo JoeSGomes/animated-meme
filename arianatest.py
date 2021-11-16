@@ -49,9 +49,9 @@ class MemoryGame:
                 print(f'You have {words_tally} questions left')
                 wa = input("What was the word? ")
 
-       if wa.lower() == self.words[i]:
+        if wa.lower() == self.words[i]:
            print("You got it right! Onto the next word...")
-       return "\n"
+        return "\n"
 
 
                 
