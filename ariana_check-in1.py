@@ -17,21 +17,18 @@ class MemoryGame:
         Args:
             index(int): location of the word we are referring to in words
         """
-        print(self.word[index])
+        print(self.words[index])
         time.sleep(self.t)
-        print("/n")
-        print("/n")
-        print("/n")
-        print("/n")
-        print("/n")
-        print("/n")
-        print("/n")
-    def questions(self, qs):
+        print("\n")
+        print("\n")
+        print("\n")
+        print("\n")
+        print("\n")
+        print("\n")
+    def questions(self):
         """
         after each successful guess of a word, generates new question for player 
         to answer. 
-        Args:
-            qs(list): questions for player to answer
         """
         questions_tally = 3
         words_tally = 3
@@ -104,4 +101,5 @@ class MemoryGame:
 words = "apple", "orange", "banana", "tomato", "grape"
 interval = 2
 mg = MemoryGame(words, interval)
-mg
+print(mg.display_words(interval))
+print(mg.questions())
