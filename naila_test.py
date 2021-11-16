@@ -63,8 +63,8 @@ class GuessTheNumber:
             
             if upper > 50:
                 upper = 50
-            if lower < 0:
-                lower = 0
+            if lower < 1:
+                lower = 1
                 
             print (f"Number is between {lower} and {upper}\n")
             self.hints_left -= 1
@@ -75,8 +75,8 @@ class GuessTheNumber:
             
             if upper > 50:
                 upper = 50
-            if lower < 0:
-                lower = 0
+            if lower < 1:
+                lower = 1
             print (f"Number is between {lower} and {upper}\n")
             self.hints_left -= 1
             
@@ -87,8 +87,8 @@ class GuessTheNumber:
             
             if upper > 50:
                 upper = 50
-            if lower < 0:
-                lower = 0
+            if lower < 1:
+                lower = 1
             print (f"Number is between {lower} and {upper}\n")
             self.hints_left -= 1
         
@@ -98,8 +98,8 @@ class GuessTheNumber:
             
             if upper > 50:
                 upper = 50
-            if lower < 0:
-                lower = 0
+            if lower < 1:
+                lower = 1
             print(f"You already used your guesses. Reminder number is between {lower} and {upper}")
         # if self.hints_left == 0:
         #     print("You ran out of hints, sorry!")
