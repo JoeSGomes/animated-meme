@@ -1,4 +1,5 @@
 from argparse import ArgumentParser
+from random import randint
 
 # GAMESWON = 0 
 # GAMESATTEMPTED = 0 
@@ -269,7 +270,7 @@ class GuessNumber:
             Prints the game state and input prompts to the standard output
             Prints the result of the game
         """
-        target_number = random.randint(lower_bound, upper_bound)
+        target_number = randint(lower_bound, upper_bound)
         print("The number you are looking for is between {} and {}".format(lower_bound, upper_bound))
         correctly_guessed = False
         for i in range(self.tries):
@@ -286,6 +287,15 @@ class GuessNumber:
             print("You ran out of tries; better luck next time!")
     
     def hints(counter, number): 
+        '''
+        this method gives 3 separate hints for player if requested
+        
+        Args: 
+            counter(int): counter starts at 0, each time player prompts 'hint' 1 is added to counter to
+                          total 3 at the end.
+            number(int): the random number generated, will be added or subtracted or added by hint
+        
+        '''
 	
         if counter ==  1: 
             print (f"Number is between {number - 20} and {number + 20}")
