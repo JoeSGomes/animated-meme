@@ -39,7 +39,7 @@ class MemoryGame:
       while questions_tally > 0:
           while qa.lower() != a or qa != a:
             questions_tally =  questions_tally - 1
-            qa = input(q)
+          qa = input(q)
 
           if qa.lower() == a:
               wa = input("What was the word? ")
