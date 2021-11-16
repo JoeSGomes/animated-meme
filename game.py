@@ -69,6 +69,22 @@ class JeopardyCatalog:
                 value_dictionary[int(points)] = (question, answer)
                 self.dictionary[category] = value_dictionary
                 
+    def available_questions(self, subject):
+        """This method will be used to check which questions are available and from there, this will be displayed to the user.
+
+    Args:
+        subject (string): The subject is the type of question that can be choosen. For example, the subject here is pop culture, math, history. 
+
+    Returns:
+        [Str]: The list of available key left after the ones that have been said correspoinding the subject of the question. 
+         """
+        place = self.dictionary.get(subject)
+        keys = place.keys()
+        l = []
+        for i in keys:
+            l.append(i)
+        return f'{subject} Questions Available: {l}'  
+                
     def get_question(self, subject, points):
         """
         gets the question from the catalog that is named
@@ -82,7 +98,6 @@ class JeopardyCatalog:
         Raises:
             KeyError: if the name of the subject is not in the catalog
         """
-        
         
         if subject[points] not in self.dictionary:
             raise KeyError ("question does not exist in the game!")
@@ -309,7 +324,6 @@ class GuessNumber:
         else:
             print(f"You already used your guesses. Reminder number is between {number - 5} and 	{number + 5}")
 
-    
 
 # def main (): 
 #     games_won = 0 
