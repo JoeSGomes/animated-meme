@@ -1,4 +1,5 @@
 from argparse import ArgumentParser
+from random import randint
 
 # GAMESWON = 0 
 # GAMESATTEMPTED = 0 
@@ -271,7 +272,7 @@ class GuessNumber:
             Prints the game state and input prompts to the standard output
             Prints the result of the game
         """
-        target_number = random.randint(lower_bound, upper_bound)
+        target_number = randint(lower_bound, upper_bound)
         print("The number you are looking for is between {} and {}".format(lower_bound, upper_bound))
         correctly_guessed = False
         for i in range(self.tries):
