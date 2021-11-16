@@ -71,7 +71,7 @@ class MemoryGame:
         words_tally = 3
         while questions_tally != 0:
             qa1 = input("What is  the first element in the periodic table? ")
-            if qa1.lower() == "Hydrogen":
+            if qa1.lower() == "hydrogen":
                 wa1 = input("What was the first word? ")
                 if wa1 == self.words[0]:
                     print("Correct!")
@@ -84,7 +84,7 @@ class MemoryGame:
                 print(f"You have {questions_tally} left")
                 
             qa2 = input("What is 6/(2(1+2))?")
-            if qa2 == 1 or qa2.lower() == "One":
+            if qa2 == 1 or qa2.lower() == "one":
                 wa2 = input("What was the second word? ")
                 if wa2 == self.words[1]:
                     print("Correct!")
@@ -110,7 +110,7 @@ class MemoryGame:
                 print(f"You have {questions_tally} left")
             
             qa4 = input("What shape is generally used for stop signs? ")
-            if qa4.lower() == "Octagon":
+            if qa4.lower() == "octagon":
                 wa4 = input("What was the fourth word? ")
                 if wa4 == self.words[3]:
                     print("Correct!")
