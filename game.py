@@ -271,7 +271,7 @@ class GuessNumber:
     """
     def __init__(self, tries = 10, hints = 3):
         self.tries = tries
-        self.hints = hints
+        self.hints_used = hints
 
     def mechanics_of_game(self, lower_bound = 1, upper_bound = 50):
         """
@@ -301,7 +301,7 @@ class GuessNumber:
         else:
             print("You ran out of tries; better luck next time!")
     
-    def hints(counter, number): 
+    def hints(self, target_number): 
         '''
         this method gives 3 separate hints for player if requested
         
@@ -312,17 +312,55 @@ class GuessNumber:
         
         '''
 	
-        if counter ==  1: 
-            print (f"Number is between {number - 20} and {number + 20}")
+        if self.hints_used ==  1: 
+            upper = target_number + 20
+            lower = target_number - 20
+            
+            if upper > 50:
+                upper = 50
+            if lower < 50:
+                lower = 1
+            
+            print (f'Number is between {lower} and {upper}\n')
+            self.hints_left -= 1
+             
         
-        elif counter == 2:
-            print (f"Number is between {number - 10} and {number + 10}")
+        elif self.hints_used == 2:
+            upper = target_number + 10
+            lower = target_number - 10
+            
+            if upper > 50:
+                upper = 50
+            if lower < 50:
+                lower = 1
+            
+            print (f'Number is between {lower} and {upper}\n')
+            self.hints_left -= 1
         
-        elif counter == 3:
-            print (f"Number is between {number - 5} and {number + 5}")
+        elif self.hints_used == 3:
+            upper = target_number + 5
+            lower = target_number - 5
+            
+            if upper > 50:
+                upper = 50
+            if lower < 50:
+                lower = 1
+            
+            print (f'Number is between {lower} and {upper}\n')
+            self.hints_left -= 1
         
         else:
-            print(f"You already used your guesses. Reminder number is between {number - 5} and 	{number + 5}")
+            upper = target_number + 5
+            lower = target_number - 5
+            
+            if upper > 50:
+                upper = 50
+            if lower < 50:
+                lower = 1
+            
+            print(f"You already used your guesses. Reminder number is between {lower} and {upper}")
+            
+       
 
 
 # def main (): 
