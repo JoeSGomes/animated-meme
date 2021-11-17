@@ -66,6 +66,7 @@ class MemoryGame:
                 print(f'You have {self.questions_tally} tries left to guess the question answer\n')
                 user_answer = input(question)
             else:
+                self.questions_tally -= 1
                 break
 
         if user_answer.lower() == question_answer:
@@ -85,7 +86,7 @@ class MemoryGame:
         if word_user_answer != word_answer:
             self.words_tally -= 1     
                   
-        if self.questions_tally <= 1 or self.words_tally < 1:
+        if self.questions_tally < 1 or self.words_tally < 1:
             print("Sorry, that was incorrect, and you ran out of tries!\n")
             print("\nYou lost. Better luck next time!")
             
@@ -101,15 +102,17 @@ class MemoryGame:
                                 4 : "What shape is generally used for stop signs? ",
                                 5 : "Who won the 2021 World Series? "}
         questions_key = 1
+        
         dictionary_answers = {1 :"hydrogen",
                             2 : "z",
                             3 : "john adams",
                             4 : "octagon",
                             5 : "braves"}
         answer_key = 1
+        
         index = 0
         
-        while self.questions_tally > 1 and self.words_tally > 0 and index <= 3:
+        while self.questions_tally > 0 and self.words_tally > 0 and index <= 3:
             self.display_words(int(index))
             self.questions(int(index), dictionary_questions[questions_key], dictionary_answers[answer_key])
             questions_key += 1
@@ -121,34 +124,5 @@ class MemoryGame:
         x = ""
         return x
 
-            
-# words = ["apple", "orange", "banana", "tomato", "grape"]
-# q1 = "What is  the first element in the periodic table? "
-# a1 = "hydrogen"
-# q2 = "What is the last letter of the alphabet? "
-# a2 = "z"
-# q3 = "Who was the second president of the United States? "
-# a3 = "john adams"
-# q4 = "What shape is generally used for stop signs? "
-# a4 = "octagon"
-# q5 = "Who won the 2021 World Series? "
-# a5 = "braves"
-
 mg = MemoryGame(1)
 print(mg.mechanics())
-
-# print(mg.display_words(1))
-# question_set2 = mg.questions(1, q2, a2)
-# print(question_set2)
-
-# print(mg.display_words(2))
-# question_set3 = mg.questions(2, q3, a3)
-# print(question_set3)
-
-# print(mg.display_words(3))
-# question_set4 = mg.questions(3, q4, a4)
-# print(question_set4)
-
-# print(mg.display_words(4))
-# question_set5 = mg.questions(4, q5, a5)
-# print(question_set5)
