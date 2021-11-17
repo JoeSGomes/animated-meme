@@ -56,11 +56,56 @@ class GuessTheNumber:
             Prints a hint to the standard output
             Updates the number of hints left
         """
-        if self.hints_left == 0:
-            print("You ran out of hints, sorry!")
-        else:
-            print(f'Number is between {target_number - self.hints_left*5} and {target_number + self.hints_left*5}')
+        
+        if self.hints_left ==  3:
+            upper = target_number + 20
+            lower = target_number - 20 
+            
+            if upper > 50:
+                upper = 50
+            if lower < 1:
+                lower = 1
+                
+            print (f"Number is between {lower} and {upper}\n")
             self.hints_left -= 1
+        
+        elif self.hints_left == 2:
+            upper = target_number + 10
+            lower = target_number - 10 
+            
+            if upper > 50:
+                upper = 50
+            if lower < 1:
+                lower = 1
+            print (f"Number is between {lower} and {upper}\n")
+            self.hints_left -= 1
+            
+        
+        elif self.hints_left == 1:
+            upper = target_number + 5
+            lower = target_number - 5 
+            
+            if upper > 50:
+                upper = 50
+            if lower < 1:
+                lower = 1
+            print (f"Number is between {lower} and {upper}\n")
+            self.hints_left -= 1
+        
+        else:
+            upper = target_number + 5
+            lower = target_number - 5 
+            
+            if upper > 50:
+                upper = 50
+            if lower < 1:
+                lower = 1
+            print(f"You already used your guesses. Reminder number is between {lower} and {upper}")
+        # if self.hints_left == 0:
+        #     print("You ran out of hints, sorry!")
+        # else:
+        #     print(f'Number is between {target_number - self.hints_left*5} and {target_number + self.hints_left*5}')
+        #     self.hints_left -= 1
 
 gtn = GuessTheNumber()
 gtn.mechanics_of_game()
