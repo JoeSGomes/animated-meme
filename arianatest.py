@@ -25,7 +25,10 @@ class MemoryGame:
         print("\n")
         print("\n")
         print("\n")
-    def questions(self, i, question, answer):
+        
+        x = ""
+        return x
+    def questions(self, i, question, question_answer):
         """
         allows user to answer five questions to throw them off reciting the words from memory
         Args:
@@ -35,28 +38,54 @@ class MemoryGame:
         """
         questions_tally = 3
         words_tally = 3
+        word_answer = self.words[i]
 
-
-        user_answer = input(question)
+        # user_answer = input(question)
             
-        while user_answer.lower() != answer:
-            questions_tally = questions_tally - 1
-            user_answer = input(question)
+        # while user_answer.lower() != answer:
+        #     questions_tally = questions_tally - 1
+        #     user_answer = input(question)
             
 
-        if user_answer.lower() == answer:
-            wa = input("What was the word? ")
-            while wa.lower() != self.words[i]:
-                words_tally = words_tally - 1
-                print("Sorry, that was incorrect, please try again!")
-                print(f'You have {words_tally} tries left to guess the word')
-                wa = input("What was the word? ")
+        # if user_answer.lower() == answer:
+        #     wa = input("What was the word? ")
+        #     while wa.lower() != self.words[i]:
+        #         words_tally = words_tally - 1
+        #         print("Sorry, that was incorrect, please try again!")
+        #         print(f'You have {words_tally} tries left to guess the word')
+        #         wa = input("What was the word? ")
 
-        if wa.lower() == self.words[i]:
-            print("You got it right! Onto the next word...")
+        # if wa.lower() == self.words[i]:
+        #     print("You got it right! Onto the next word...")
         
-        x = ' '
-        return x
+        # x = ' '
+        # return x
+        user_answer = input(question)
+
+        while questions_tally > 1 and user_answer.lower() != question_answer:
+            if user_answer.lower() != question_answer and questions_tally > 0:
+                questions_tally = questions_tally - 1
+                print("Sorry, that was incorrect, please try again!\n")
+                print(f'You have {questions_tally} tries left to guess the word\n')
+                user_answer = input(question)
+            else:
+                break
+        
+        if user_answer.lower() == question_answer:
+            word_user_answer = input("What was the word? ")
+            while words_tally > 1 and word_user_answer.lower() != word_answer:
+                words_tally = words_tally - 1
+                print("Sorry, that was incorrect, please try again!\n")
+                print(f'You have {words_tally} tries left to guess the word\n')
+                word_user_answer = input("What was the word? ")
+        
+        if user_answer.lower() == question_answer and word_user_answer.lower() == word_answer:
+            print("\nYou got it right, onto the next challenge!")        
+        else:
+            print("\nSorry, you lost. Hope you have better luck next time!")
+        
+        x = ""  
+        return x  
 
 
                 
