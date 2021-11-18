@@ -9,7 +9,7 @@ class MemoryGame:
         t(int): time interval in seconds
     """
     def __init__(self,time, questions_tally = 3, words_tally = 3):
-        self.words = ["apple", "orange", "banana", "tomato", "grape"]
+        self.words = ["apple", "pencil", "isolation", "broccoli", "pterodactyl"]
         self.time = time
         self.questions_tally = questions_tally
         self.words_tally = words_tally
@@ -26,13 +26,17 @@ class MemoryGame:
         print("\n")
         time.sleep(self.time)
         print("Get Ready!")
-        time.sleep(.2)
+        print("\n")
+        print("\n")
+        time.sleep(.5)
         print("\n")
         print("\n")
         print("\n")
         print("\n")
         print("\n")
         print(self.words[index])
+        print("\n")
+        print("\n")
         time.sleep(self.time)
         print("\n")
         print("\n")
@@ -57,27 +61,30 @@ class MemoryGame:
         word_user_answer = ""
 
         print(f'Reminder: You have {self.questions_tally} tries left to guess the question answer\n')
-        user_answer = input(question)
+        user_answer = input(question).strip()
 
         while user_answer.lower() != question_answer:
             if user_answer.lower() != question_answer and self.questions_tally != 1:
                 self.questions_tally -= 1
-                print("Sorry, that was incorrect, please try again!\n")
-                print(f'You have {self.questions_tally} tries left to guess the question answer\n')
-                user_answer = input(question)
+                print("\nSorry, that was incorrect, please try again!")
+                print(f'\nYou have {self.questions_tally} tries left to guess the question answer\n')
+                user_answer = input(question).strip()
+                
             else:
                 self.questions_tally -= 1
                 break
 
         if user_answer.lower() == question_answer:
-            print("Correct, now onto guessing the word...")
+            print("\nCorrect, now onto guessing the word...")
             print(f'\nReminder: You have {self.words_tally} tries left to guess the word\n')
-            word_user_answer = input("What was the word? ")
+            
+            word_user_answer = input("What was the word? ").strip()
+            
             while word_user_answer.lower() != word_answer and self.words_tally != 1:
                 self.words_tally -= 1
                 print("Sorry, that was incorrect, please try again!\n")
                 print(f'You have {self.words_tally} tries left to guess the word\n')
-                word_user_answer = input("What was the word? ")
+                word_user_answer = input("What was the word? ").strip()
         
             if word_user_answer.lower() == word_answer:
                 print("\nYou got it right, onto the next challenge!")
@@ -87,7 +94,7 @@ class MemoryGame:
             self.words_tally -= 1     
                   
         if self.questions_tally < 1 or self.words_tally < 1:
-            print("Sorry, that was incorrect, and you ran out of tries!\n")
+            print("\nSorry, that was incorrect, and you ran out of tries!\n")
             print("\nYou lost. Better luck next time!")
             
         
@@ -112,17 +119,18 @@ class MemoryGame:
         
         index = 0
         
-        while self.questions_tally > 0 and self.words_tally > 0 and index <= 3:
+        while self.questions_tally > 0 and self.words_tally > 0 and index <= 4:
             self.display_words(int(index))
             self.questions(int(index), dictionary_questions[questions_key], dictionary_answers[answer_key])
             questions_key += 1
             answer_key += 1
             index += 1
         
-
+        if self.questions_tally > 0 and self.words_tally > 0 and index > 4:
+            print("\nCongratulations! The game is over and you won! Good luck with your other games!\n")
             
         x = ""
         return x
 
-mg = MemoryGame(1)
+mg = MemoryGame(.5)
 print(mg.mechanics())
