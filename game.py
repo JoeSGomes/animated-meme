@@ -34,7 +34,40 @@ class Jeopardy:
             current_points (int): THe current point of the human player. 
         """
         self.current_points = current_points
-        
+    
+    def play_jeopardy_game(self): 
+        while self.points < 3000:
+            self.available_questions("Math")
+            self.available_questions("History")
+            self.available_questions("Pop Culture")
+            
+            user_subject = input("Which subject do you want to attempt? ").strip()
+            
+            while user_subject != "Math" or user_subject != "History" or user_subject != "Pop Culture": 
+                print("Sorry, that is not a valid subject, please try again!")
+                user_subject = input("Which subject do you want to attempt? ").strip()
+                
+            if user_subject == "Math" or user_subject == "History" or user_subject == "Pop Culture":
+                user_points = input("How many points do you want to attempt? ").strip()
+            points_available = self.available_points(user_subject)
+            
+            while user_points not in points_available:
+                print("Sorry that question does not exists, try again. ")
+                user_points = input("How many points do you want to attempt? ").strip()
+                points_available = self.available_points(user_subject)
+                
+            if user_points in points_available:
+                user_answer = input(self.get_question(user_subject, user_points))
+                
+                if user_answer == self.get_answer(user_subject, user_points):
+                    print( f'That was correct! You got {self.get_points(user_points)} points')
+                    self.current_points += self.get_points(user_points)
+                    self.update_dictionary(user_subject, user_points)
+                else: 
+                    print("That was incorrect! ")
+                    self.update_dictionary(user_subject, user_points)
+            
+            
 
 class JeopardyCatalog:
     """
@@ -84,6 +117,22 @@ class JeopardyCatalog:
         for i in keys:
             l.append(i)
         return f'{subject} Questions Available: {l}'
+    
+    def available_points(self, subject):
+        """This method will be used to check which questions are available and from the dictionary, this will be displayed to the user.
+
+        Args:
+        subject (string): The subject is the type of question that can be choosen. 
+
+        Returns:
+        [Str]: The list of available key left after the ones that have been said correspoinding the subject of the question. 
+         """
+        place = self.dictionary.get(subject)
+        keys = place.keys()
+        l = []
+        for i in keys:
+            l.append(i)
+        return l
                 
     def get_question(self, subject, points):
         """
