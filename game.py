@@ -14,8 +14,7 @@ class HumanPlayer:
         self.name = name 
         self.games_won = games_won
         self.games_attemped = games_attemped
-        self.games_won = 0 
-        self.games_attemped = 0 
+
     
     
 class Jeopardy:
