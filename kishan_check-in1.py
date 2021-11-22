@@ -30,11 +30,11 @@ class JeopardyCatalog:
                 question = line_list[2]
                 answer = line_list[3]
                 
-                if category == "Pop Culture":
+                if category == "pop culture":
                     pop_culture[int(points)] = (question, answer)
-                elif category == "History":
+                elif category == "history":
                     history[int(points)] = (question, answer)
-                elif category == "Math":
+                elif category == "math":
                     math[int(points)] = (question, answer)
                     
             self.dictionary["Pop Culture"] = pop_culture
