@@ -85,7 +85,9 @@ class JeopardyCatalog:
         adding values to the dictionary attribute
         """
         self.dictionary = {}
-        value_dictionary = {}
+        pop_culture = {}
+        history = {}
+        math = {}
         
         with open(file, "r", encoding="utf-8") as f:
             for line in f:
@@ -96,9 +98,17 @@ class JeopardyCatalog:
                 points = line_list[1]
                 question = line_list[2]
                 answer = line_list[3]
-
-                value_dictionary[int(points)] = (question, answer)
-                self.dictionary[category] = value_dictionary
+                
+                if category == "pop culture":
+                    pop_culture[int(points)] = (question, answer)
+                elif category == "history":
+                    history[int(points)] = (question, answer)
+                elif category == "math":
+                    math[int(points)] = (question, answer)
+                    
+            self.dictionary["Pop Culture"] = pop_culture
+            self.dictionary["Math"] = math
+            self.dictionary["History"] = history
                 
     def available_questions(self, subject):
         """This method will be used to check which questions are available and from the dictionary, this will be displayed to the user.
