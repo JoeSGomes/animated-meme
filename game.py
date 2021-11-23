@@ -5,7 +5,7 @@ from random import randint
 class HumanPlayer:
     """ This class will be used throughout the 3 games that will be played by the player. 
     """
-    def __init__(self, name, games_won, games_attemped): 
+    def __init__(self, name, games_won, games_attempted): 
         """This will contain the human player name. 
 
         Args:
@@ -13,7 +13,7 @@ class HumanPlayer:
         """
         self.name = name 
         self.games_won = games_won
-        self.games_attemped = games_attemped
+        self.games_attempted = games_attempted
 
 class Jeopardy:
     """This class is run the jeopardy game the player has selected. 
@@ -388,7 +388,8 @@ class MemoryGame:
             
         x = ""
         return x
-        
+
+import random
 class GuessTheNumber:
     """
     Class that contains all the logic related to the "Guess the number" game
@@ -518,7 +519,34 @@ class GuessTheNumber:
 #         else: 
 #             raise ValueError ("Sorry, that is not a valid game, try again!")
 
-
+def main():
+    player = HumanPlayer("Kishan", 0, 0)
+    while player.games_won < 2 and player.games_attempted <= 3:  
+        games =['memory game', 'jeopardy', 'guess the number']
+        print(games)
+        choice = input(f'Which game would you like to play? /n {games}').lower()
+        
+        if choice == "jeopardy": 
+            jg = Jeopardy(0)
+            print(jg.play_jeopardy_game())
+            games.remove('jeopardy')
+            player.games_attempted += 1 
+            
+        elif choice == "memory game": 
+            mg = MemoryGame(.5)
+            print(mg.mechanics())
+            games.remove('memory game')
+            player.games_attempted += 1
+            
+        elif choice == "guess the number": 
+            gg = GuessTheNumber()
+            player.games_attempted += 1
+            games.remove('guess the number')
+            print(gg.mechanics_of_game())
+        
+        else: 
+            raise ValueError ("Sorry, that is not a valid game, try again!")
+        
 def parse_args(arglist):
     """ Parse command-line arguments.
     
