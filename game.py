@@ -15,8 +15,6 @@ class HumanPlayer:
         self.games_won = games_won
         self.games_attemped = games_attemped
 
-    
-    
 class Jeopardy:
     """This class is run the jeopardy game the player has selected. 
     """
@@ -256,7 +254,6 @@ class JeopardyCatalog:
         """
         del self.dictionary[subject][points]
         
-
 
 import sys
 import time
