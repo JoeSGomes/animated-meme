@@ -10,19 +10,19 @@ def main():
             jg = Jeopardy(0)
             print(jg.play_jeopardy_game())
             games_attempted += 1 
-            games('jeopardy').remove()
+            games.remove('jeopardy')
             
         elif choice == "memory game": 
             mg = MemoryGame(.5)
             print(mg.mechanics())
             games_attempted += 1 
-            games('memory game').remove()
+            games.remove('memory game')
         
         elif choice == "guess the number": 
             gg = GuessTheNumber()
             print(gg.mechanics_of_game())
             games_attempted += 1
-            games('guess the number').remove()
+            games.remove('guess the number')
         
         else: 
             raise ValueError ("Sorry, that is not a valid game, try again!")
