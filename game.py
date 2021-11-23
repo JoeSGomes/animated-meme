@@ -473,7 +473,7 @@ class GuessNumber:
             
             
             
-       
+     
 
 
 # def main (): 
