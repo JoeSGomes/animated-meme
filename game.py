@@ -256,7 +256,6 @@ class JeopardyCatalog:
         del self.dictionary[subject][points]
         
 
-import sys
 import time
 
 class MemoryGame:
@@ -266,105 +265,131 @@ class MemoryGame:
         words(list): words to memorize
         t(int): time interval in seconds
     """
-    def __init__(self, words, t):
-        self.words = words
-        self.t = t
+    def __init__(self,time, questions_tally = 3, words_tally = 3):
+        self.words = ["apple", "pencil", "isolation", "broccoli", "pterodactyl"]
+        self.time = time
+        self.questions_tally = questions_tally
+        self.words_tally = words_tally
     def display_words(self, index):
         """
         displays  five words for the player to memorize, separated by t sec intervals
         Args:
             index(int): location of the word we are referring to in words
         """
-        print(self.word[index])
-        time.sleep(self.t)
-        print("/n")
-        print("/n")
-        print("/n")
-        print("/n")
-        print("/n")
-        print("/n")
-        print("/n")
-    def questions(self, qs):
+        print("\n")
+        print("\n")
+        print("\n")
+        print("\n")
+        print("\n")
+        time.sleep(self.time)
+        print("Get Ready!")
+        print("\n")
+        print("\n")
+        time.sleep(.5)
+        print("\n")
+        print("\n")
+        print("\n")
+        print("\n")
+        print("\n")
+        print(self.words[index])
+        print("\n")
+        print("\n")
+        time.sleep(self.time)
+        print("\n")
+        print("\n")
+        print("\n")
+        print("\n")
+        print("\n")
+        print("\n")
+        
+        x = ""
+        return x
+        
+    def questions(self, index, question, question_answer):
         """
-        after each successful guess of a word, generates new question for player 
-        to answer. 
+        allows user to answer five questions to throw them off reciting the words from memory
         Args:
-            qs(list): questions for player to answer
+            i(int): index for word in words
+            q(string): question for the user to answer
+            a(string): correct answer
         """
-        questions_tally = 3
-        words_tally = 3
-        while questions_tally != 0:
-            qa1 = input("What is  the first element in the periodic table? ")
-            if qa1 == "Hydrogen" or qa1 == "hydrogen":
-                wa1 = input("What was the first word? ")
-                if wa1 == self.words[0]:
-                    print("Correct!")
-                else:
-                    words_tally = words_tally - 1
-                    print(f"Incorrect you have {words_tally} chances left")
-            else:
-                questions_tally = questions_tally - 1
-                print("Incorrect - answer was Hydrogen")
-                print(f"You have {questions_tally} left")
+
+        word_answer = self.words[index]
+        word_user_answer = ""
+
+        print(f'Reminder: You have {self.questions_tally} tries left to guess the question answer\n')
+        user_answer = input(question).strip()
+
+        while user_answer.lower() != question_answer:
+            if user_answer.lower() != question_answer and self.questions_tally != 1:
+                self.questions_tally -= 1
+                print("\nSorry, that was incorrect, please try again!")
+                print(f'\nYou have {self.questions_tally} tries left to guess the question answer\n')
+                user_answer = input(question).strip()
                 
-            qa2 = input("What is 6/(2(1+2))?")
-            if qa2 == 1:
-                wa2 = input("What was the second word? ")
-                if wa2 == self.words[1]:
-                    print("Correct!")
-                else:
-                    words_tally = words_tally - 1
-                    print(f"Incorrect you have {words_tally} chances left")
             else:
-                questions_tally = questions_tally - 1
-                print("Incorrect - answer was 1")
-                print(f"You have {questions_tally} left")
-                
-            qa3 = input("Who was the second president of the United States? ")
-            if qa3 == "John Adams" or qa3 == "john adams":
-                wa3 = input("What was the third word? ")
-                if wa3 == self.words[2]:
-                    print("Correct!")
-                else:
-                    words_tally = words_tally - 1
-                    print(f"Incorrect you have {words_tally} chances left")
-            else:
-                questions_tally = questions_tally - 1
-                print("Incorrect - answer was John Adams")
-                print(f"You have {questions_tally} left")
+                self.questions_tally -= 1
+                break
+
+        if user_answer.lower() == question_answer:
+            print("\nCorrect, now onto guessing the word...")
+            print(f'\nReminder: You have {self.words_tally} tries left to guess the word\n')
             
-            qa4 = input("What shape is generally used for stop signs? ")
-            if qa4 == "Octagon" or qa4 == "octagon":
-                wa4 = input("What was the fourth word? ")
-                if wa4 == self.words[3]:
-                    print("Correct!")
-                else:
-                    words_tally = words_tally - 1
-                    print(f"Incorrect you have {words_tally} chances left")
-            else:
-                questions_tally = questions_tally - 1
-                print("Incorrect - answer was an octagon")
-                print(f"You have {questions_tally} left")
-                
-            qa5 = input("How many continents are there on Earth? ")
-            if qa5 == 7 or qa5 == "Seven" or qa5 == "seven":
-                wa5 = input("What was the fifth word? ")
-                if wa5 == self.words[4]:
-                    print("Correct!")
-                else:
-                    words_tally = words_tally - 1
-                    print(f"Incorrect you have {words_tally} chances left")
-            else:
-                questions_tally = questions_tally - 1
-                print("Incorrect - answer was 7")
-                print(f"You have {questions_tally} left")      
-                
-#words = "apple", "orange", "banana", "tomato", "grape"
-#interval = 2
-#mg = MemoryGame(words, interval)
-   
-  
-class GuessNumber:   
+            word_user_answer = input("What was the word? ").strip()
+            
+            while word_user_answer.lower() != word_answer and self.words_tally != 1:
+                self.words_tally -= 1
+                print("Sorry, that was incorrect, please try again!\n")
+                print(f'You have {self.words_tally} tries left to guess the word\n')
+                word_user_answer = input("What was the word? ").strip()
+        
+            if word_user_answer.lower() == word_answer:
+                print("\nYou got it right, onto the next challenge!")
+                time.sleep(self.time) 
+                    
+        if word_user_answer != word_answer:
+            self.words_tally -= 1     
+                  
+        if self.questions_tally < 1 or self.words_tally < 1:
+            print("\nSorry, that was incorrect, and you ran out of tries!\n")
+            print("\nYou lost. Better luck next time!")
+            
+        
+        x = ""  
+        return x  
+
+
+    def mechanics(self):
+        dictionary_questions = {1 : "What is the first element in the periodic table? ",
+                                2 : "What is the last letter of the alphabet? ",
+                                3 : "Who was the second president of the United States? ",
+                                4 : "What shape is generally used for stop signs? ",
+                                5 : "Who won the 2021 World Series? "}
+        questions_key = 1
+        
+        dictionary_answers = {1 :"hydrogen",
+                            2 : "z",
+                            3 : "john adams",
+                            4 : "octagon",
+                            5 : "braves"}
+        answer_key = 1
+        
+        index = 0
+        
+        while self.questions_tally > 0 and self.words_tally > 0 and index <= 4:
+            self.display_words(int(index))
+            self.questions(int(index), dictionary_questions[questions_key], dictionary_answers[answer_key])
+            questions_key += 1
+            answer_key += 1
+            index += 1
+        
+        if self.questions_tally > 0 and self.words_tally > 0 and index > 4:
+            print("\nCongratulations! The game is over and you won! Good luck with your other games!\n")
+            
+        x = ""
+        return x
+        
+ class GuessTheNumber:
     """
     Class that contains all the logic related to the "Guess the number" game
 
@@ -372,9 +397,9 @@ class GuessNumber:
         tries (int): number of allowed tries
         hints (int): number of hints that the player can use
     """
-    def __init__(self, tries = 10, hints = 3):
+    def __init__(self, tries = 10, hints_left = 3):
         self.tries = tries
-        self.hints_used = hints
+        self.hints_left = hints_left
 
     def mechanics_of_game(self, lower_bound = 1, upper_bound = 50):
         """
@@ -388,88 +413,83 @@ class GuessNumber:
             Prints the game state and input prompts to the standard output
             Prints the result of the game
         """
-        target_number = randint(lower_bound, upper_bound)
+        target_number = random.randint(lower_bound, upper_bound)
         print("The number you are looking for is between {} and {}".format(lower_bound, upper_bound))
         correctly_guessed = False
         for i in range(self.tries):
-            guess = int(input("Make a guess: "))
-            if guess == target_number:
-                correctly_guessed = True
-                break
+            user_input = input("Make a guess (or type 'H' to get a hint): ")
+            if user_input == 'H':
+                self.hints(target_number)
             else:
-                print("Incorrect guess!")
+                guess = int(user_input)
+                if guess == target_number:
+                    correctly_guessed = True
+                    break
+                else:
+                    print("Incorrect guess!")
             
         if correctly_guessed:
             print("Correct guess! You won!")
-            HumanPlayer.games_won += 1
-            HumanPlayer.games_attempted =+ 1
-            
         else:
             print("You ran out of tries; better luck next time!")
-            HumanPlayer.games_attempted =+ 1
-            
+
+    def hints(self, target_number):
+        """
+        This method handles providing hints to the user
+
+        Args:
+            target_number (int): the target number of the game (i.e. the number that the
+                user is trying to guess)
+
+        Side effects:
+            Prints a hint to the standard output
+            Updates the number of hints left
+        """
         
-    
-    def hints(self, target_number): 
-        '''
-        this method gives 3 separate hints for player if requested
-        
-        Args: 
-            counter(int): counter starts at 0, each time player prompts 'hint' 1 is added to counter to
-                          total 3 at the end.
-            number(int): the random number generated, will be added or subtracted or added by hint
-        
-        '''
-	
-        if self.hints_used ==  1: 
+        if self.hints_left ==  3:
             upper = target_number + 20
-            lower = target_number - 20
+            lower = target_number - 20 
             
             if upper > 50:
                 upper = 50
-            if lower < 50:
+            if lower < 1:
                 lower = 1
-            
-            print (f'Number is between {lower} and {upper}\n')
+                
+            print (f"Number is between {lower} and {upper}\n")
             self.hints_left -= 1
-             
         
-        elif self.hints_used == 2:
+        elif self.hints_left == 2:
             upper = target_number + 10
-            lower = target_number - 10
+            lower = target_number - 10 
             
             if upper > 50:
                 upper = 50
-            if lower < 50:
+            if lower < 1:
                 lower = 1
-            
-            print (f'Number is between {lower} and {upper}\n')
+            print (f"Number is between {lower} and {upper}\n")
             self.hints_left -= 1
+            
         
-        elif self.hints_used == 3:
+        elif self.hints_left == 1:
             upper = target_number + 5
-            lower = target_number - 5
+            lower = target_number - 5 
             
             if upper > 50:
                 upper = 50
-            if lower < 50:
+            if lower < 1:
                 lower = 1
-            
-            print (f'Number is between {lower} and {upper}\n')
+            print (f"Number is between {lower} and {upper}\n")
             self.hints_left -= 1
         
         else:
             upper = target_number + 5
-            lower = target_number - 5
+            lower = target_number - 5 
             
             if upper > 50:
                 upper = 50
-            if lower < 50:
+            if lower < 1:
                 lower = 1
-            
             print(f"You already used your guesses. Reminder number is between {lower} and {upper}")
-            
-            
             
      
 
