@@ -31,9 +31,10 @@ class Jeopardy:
         while self.current_points < 3000 and catalog.total_game_available_points() > 0:
             
             print()
-            print(catalog.available_questions("math"))
-            print(catalog.available_questions("history"))
-            print(catalog.available_questions("pop culture"))
+            print(f'history questions available: {catalog.available_questions("history")}')
+            print(f'math questions available: {catalog.available_questions("math")}')
+            print(f'pop culture questions available: {catalog.available_questions("pop culture")}')
+            
             print(f'\nYou currently have acquired {self.current_points}/3,000 points so far to win the game\n')
 
             
@@ -43,13 +44,14 @@ class Jeopardy:
             
             user_subject = input("Which subject do you want to attempt? ").lower().strip()
             
-            while not(user_subject == math or user_subject == history or user_subject == pop_culture): 
-                    
+            while not (user_subject == math or user_subject == history or user_subject == pop_culture):
                 print()
                 print("\nSorry, that is not a valid subject, please try again!\n\n")
-                print(catalog.available_questions("math"))
-                print(catalog.available_questions("history"))
-                print(catalog.available_questions("pop culture"))
+                
+                print(f'history questions available: {catalog.available_questions("history")}')
+                print(f'math questions available: {catalog.available_questions("math")}')
+                print(f'pop culture questions available: {catalog.available_questions("pop culture")}')
+                
                 print(f'\nYou currently have acquired {self.current_points}/3,000 points so far to win the game\n')
                 
                 user_subject = input("Which subject do you want to attempt? ").lower().strip()
@@ -62,9 +64,10 @@ class Jeopardy:
             while user_points not in points_available:
                 print("\nSorry that question does not exists, try again.\n\n")
                 
-                print(catalog.available_questions("math"))
-                print(catalog.available_questions("history"))
-                print(catalog.available_questions("pop culture"))
+                print(f'history questions available: {catalog.available_questions("history")}')
+                print(f'math questions available: {catalog.available_questions("math")}')
+                print(f'pop culture questions available: {catalog.available_questions("pop culture")}')
+                
                 print(f'\nYou currently have acquired {self.current_points}/3,000 points so far to win the game\n')
                 
                 user_points = int(input("\nHow many points do you want to attempt? ").strip())
@@ -84,7 +87,6 @@ class Jeopardy:
         if self.current_points >= 3000 and catalog.total_game_available_points() > 0: 
             player.games_won == 1
             
-        player.games_attemped += 1
         
         x = ""
         return x
@@ -147,7 +149,7 @@ class JeopardyCatalog:
         l = []
         for i in keys:
             l.append(int(i))
-        return f'{subject} questions available: {l}'
+        return l
     
     def available_points(self, subject):
         """This method will be used to check which questions are available and from the dictionary, this will be displayed to the user.
