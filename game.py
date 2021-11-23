@@ -28,41 +28,67 @@ class Jeopardy:
         """
         self.current_points = current_points
     
-    def play_jeopardy_game(self): 
-        while self.points < 3000 and self.total_game_available_points() > 0:
-            self.available_questions("Math")
-            self.available_questions("History")
-            self.available_questions("Pop Culture")
+    def play_jeopardy_game(self):
+        catalog = JeopardyCatalog("jeopardy.txt")
+        player = HumanPlayer("Kishan", 0, 0)
+        
+        while self.current_points < 3000 and catalog.total_game_available_points() > 0:
             
-            user_subject = input("Which subject do you want to attempt? ").strip()
+            print()
+            print(catalog.available_questions("math"))
+            print(catalog.available_questions("history"))
+            print(catalog.available_questions("pop culture"))
+            print(f'\nYou currently have acquired {self.current_points}/3,000 points so far to win the game\n')
+
             
-            while user_subject != "Math" or user_subject != "History" or user_subject != "Pop Culture": 
-                print("Sorry, that is not a valid subject, please try again!")
-                user_subject = input("Which subject do you want to attempt? ").strip()
+            math = "math"
+            history = "history"
+            pop_culture = "pop culture"
+            
+            user_subject = input("Which subject do you want to attempt? ").lower().strip()
+            
+            while not(user_subject == math or user_subject == history or user_subject == pop_culture): 
+                    
+                print()
+                print("\nSorry, that is not a valid subject, please try again!\n\n")
+                print(catalog.available_questions("math"))
+                print(catalog.available_questions("history"))
+                print(catalog.available_questions("pop culture"))
+                print(f'\nYou currently have acquired {self.current_points}/3,000 points so far to win the game\n')
                 
-            if user_subject == "Math" or user_subject == "History" or user_subject == "Pop Culture":
-                user_points = input("How many points do you want to attempt? ").strip()
-            points_available = self.available_points(user_subject)
+                user_subject = input("Which subject do you want to attempt? ").lower().strip()
+                
+            if user_subject == math or user_subject == history or user_subject == pop_culture:
+                user_points = int(input("How many points do you want to attempt? ").strip())
+                
+            points_available = catalog.available_points(user_subject)
             
             while user_points not in points_available:
-                print("Sorry that question does not exists, try again. ")
-                user_points = input("How many points do you want to attempt? ").strip()
-                points_available = self.available_points(user_subject)
+                print("\nSorry that question does not exists, try again.\n\n")
+                
+                print(catalog.available_questions("math"))
+                print(catalog.available_questions("history"))
+                print(catalog.available_questions("pop culture"))
+                print(f'\nYou currently have acquired {self.current_points}/3,000 points so far to win the game\n')
+                
+                user_points = int(input("\nHow many points do you want to attempt? ").strip())
+                points_available = catalog.available_points(user_subject)
                 
             if user_points in points_available:
-                user_answer = input(self.get_question(user_subject, user_points))
+                user_answer = input(catalog.get_question(user_subject, user_points))
                 
-                if user_answer == self.get_answer(user_subject, user_points):
-                    print( f'That was correct! You got {self.get_points(user_points)} points')
-                    self.current_points += self.get_points(user_points)
-                    self.update_dictionary(user_subject, user_points)
+                if user_answer == catalog.get_answer(user_subject, user_points):
+                    print( f'\nThat was correct! You got {catalog.get_points(user_points)} points\n')
+                    self.current_points += catalog.get_points(user_points)
+                    catalog.update_dictionary(user_subject, user_points)
                 else: 
-                    print("That was incorrect! ")
-                    self.update_dictionary(user_subject, user_points)
-        if self.current_points >= 3000 and self.total_game_available_points() > 0: 
-            self.games_won == 1
+                    print("\n\nThat was incorrect! Better luck on the next question...\n")
+                    catalog.update_dictionary(user_subject, user_points)
+                    
+        if self.current_points >= 3000 and catalog.total_game_available_points() > 0: 
+            player.games_won == 1
             
-        self.games_attempted += 1
+        player.games_attemped += 1
         
         x = ""
         return x
@@ -106,9 +132,10 @@ class JeopardyCatalog:
                 elif category == "math":
                     math[int(points)] = (question, answer)
                     
-            self.dictionary["Pop Culture"] = pop_culture
-            self.dictionary["Math"] = math
-            self.dictionary["History"] = history
+            self.dictionary["pop culture"] = pop_culture
+            self.dictionary["math"] = math
+            self.dictionary["history"] = history
+            
                 
     def available_questions(self, subject):
         """This method will be used to check which questions are available and from the dictionary, this will be displayed to the user.
@@ -123,8 +150,8 @@ class JeopardyCatalog:
         keys = place.keys()
         l = []
         for i in keys:
-            l.append(i)
-        return f'{subject} Questions Available: {l}'
+            l.append(int(i))
+        return f'{subject} questions available: {l}'
     
     def available_points(self, subject):
         """This method will be used to check which questions are available and from the dictionary, this will be displayed to the user.
@@ -145,19 +172,19 @@ class JeopardyCatalog:
     def total_game_available_points(self):
         total_points = 0
         
-        history_points = self.dictionary.get("History")
+        history_points = self.dictionary.get("history")
         points = history_points.keys()
-        for i in int(points):
+        for i in points:
             total_points += i
             
-        math_points = self.dictionary.get("Math")
+        math_points = self.dictionary.get("math")
         points_m = math_points.keys()
-        for i in int(points_m):
+        for i in points_m:
             total_points += i
             
-        pop_culture_points = self.dictionary.get("Pop Culture")
+        pop_culture_points = self.dictionary.get("pop culture")
         points_pc = pop_culture_points.keys()
-        for i in int(points_pc):
+        for i in points_pc:
             total_points += i
             
         return total_points
@@ -176,12 +203,10 @@ class JeopardyCatalog:
             KeyError: if the name of the subject is not in the catalog
         """
         
-        if subject[points] not in self.dictionary:
-            raise KeyError ("question does not exist in the game!")
-        else:
-            question = self.dictionary[subject][points][0]
-            
-            return question        
+
+        question = self.dictionary[subject][points][0]
+
+        return question        
     
     def get_answer(self, subject, points):
         """
@@ -228,6 +253,7 @@ class JeopardyCatalog:
             deleting keys and values from the dictionary attribute
         """
         del self.dictionary[subject][points]
+        
 
 
 import sys
