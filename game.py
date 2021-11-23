@@ -375,8 +375,14 @@ class GuessNumber:
             
         if correctly_guessed:
             print("Correct guess! You won!")
+            HumanPlayer.games_won += 1
+            HumanPlayer.games_attempted =+ 1
+            
         else:
             print("You ran out of tries; better luck next time!")
+            HumanPlayer.games_attempted =+ 1
+            
+        
     
     def hints(self, target_number): 
         '''
@@ -436,6 +442,8 @@ class GuessNumber:
                 lower = 1
             
             print(f"You already used your guesses. Reminder number is between {lower} and {upper}")
+            
+            
             
        
 
