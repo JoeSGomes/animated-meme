@@ -389,7 +389,7 @@ class MemoryGame:
         x = ""
         return x
         
- class GuessTheNumber:
+class GuessTheNumber:
     """
     Class that contains all the logic related to the "Guess the number" game
 
