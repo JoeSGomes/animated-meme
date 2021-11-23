@@ -43,7 +43,8 @@ class Jeopardy:
             
             user_subject = input("Which subject do you want to attempt? ").lower().strip()
             
-            while not (user_subject == math or user_subject == history or user_subject == pop_culture): 
+            while not(user_subject == math or user_subject == history or user_subject == pop_culture): 
+                    
                 print()
                 print("\nSorry, that is not a valid subject, please try again!\n\n")
                 print(catalog.available_questions("math"))
