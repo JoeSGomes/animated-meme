@@ -598,5 +598,11 @@ main()
 #     main(args.filename)
 
 """
-Kishan: 
+Methods Distribution:
+
+Kishan (3): __init()__ for jeopardy catalog, total_game_available_points(), available_points() --> JeopardyCatalog Class
+Walter (2): hints() --> GuessTheNumber Class, play_games() method
+Joe (2): available_questions() --> JeopardyCatalog Class, play_jeopardy_game() --> Jeopardy Class
+Ariana (2): questions(), mechanics() --> MemoryGame Class
+Naila (2): mechanics_of_game() --> GuessTheNumber Class, parse_arge() method
 """
