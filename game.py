@@ -402,38 +402,6 @@ class GuessTheNumber:
         self.tries = tries
         self.hints_left = hints_left
 
-    def mechanics_of_game(self, lower_bound = 1, upper_bound = 50):
-        """
-        This method handles the logic of the game
-
-        Args:
-            lower_bound (int): the lower bound of the target integer. Defaults to 1
-            upper_bound (int): the upper bound of the target integer. Defaults to 50
-
-        Side effects:
-            Prints the game state and input prompts to the standard output
-            Prints the result of the game
-        """
-        target_number = random.randint(lower_bound, upper_bound)
-        print("The number you are looking for is between {} and {}".format(lower_bound, upper_bound))
-        correctly_guessed = False
-        for i in range(self.tries):
-            user_input = input("Make a guess (or type 'H' to get a hint): ")
-            if user_input == 'H':
-                self.hints(target_number)
-            else:
-                guess = int(user_input)
-                if guess == target_number:
-                    correctly_guessed = True
-                    break
-                else:
-                    print("Incorrect guess!")
-            
-        if correctly_guessed:
-            print("Correct guess! You won!")
-        else:
-            print("You ran out of tries; better luck next time!")
-
     def hints(self, target_number):
         """
         This method handles providing hints to the user
@@ -492,6 +460,40 @@ class GuessTheNumber:
                 lower = 1
             print(f"You already used your guesses. Reminder number is between {lower} and {upper}")
             
+    def mechanics_of_game(self, lower_bound = 1, upper_bound = 50):
+        """
+        This method handles the logic of the game
+
+        Args:
+            lower_bound (int): the lower bound of the target integer. Defaults to 1
+            upper_bound (int): the upper bound of the target integer. Defaults to 50
+
+        Side effects:
+            Prints the game state and input prompts to the standard output
+            Prints the result of the game
+        """
+        target_number = random.randint(lower_bound, upper_bound)
+        print("The number you are looking for is between {} and {}".format(lower_bound, upper_bound))
+        correctly_guessed = False
+        for i in range(self.tries):
+            user_input = input("Make a guess (or type 'H' to get a hint): ")
+            if user_input == 'H':
+                self.hints(target_number)
+            else:
+                guess = int(user_input)
+                if guess == target_number:
+                    correctly_guessed = True
+                    break
+                else:
+                    print("Incorrect guess!")
+            
+        if correctly_guessed:
+            print("Correct guess! You won!")
+        else:
+            print("You ran out of tries; better luck next time!")
+
+    
+            
      
 
 
@@ -519,47 +521,82 @@ class GuessTheNumber:
 #         else: 
 #             raise ValueError ("Sorry, that is not a valid game, try again!")
 
-def main():
+def play_games(filename):
     player = HumanPlayer("Kishan", 0, 0)
+    games =['memory game', 'jeopardy', 'guess the number']
+
     while player.games_won < 2 and player.games_attempted <= 3:  
-        games =['memory game', 'jeopardy', 'guess the number']
-        print(games)
-        choice = input(f'Which game would you like to play? /n {games}').lower()
+        if player.games_won < 2 and len(games) == 1:
+            print("You suck")
+            break
+        else:
+            print(games)
+            print(f'You have won {player.games_won} games and attempted {player.games_attempted} games')
+            choice = input(f'Which game would you like to play? \n {games}').lower()
         
-        if choice == "jeopardy": 
-            jg = Jeopardy(0)
-            print(jg.play_jeopardy_game())
-            games.remove('jeopardy')
-            player.games_attempted += 1 
+            while choice not in games:
+                print("Sorry, that game does not exist. Please try again!")
+                print(games)
+                print(f'You have won {player.games_won} games and attempted {player.games_attempted} games')
+                choice = input(f'Which game would you like to play? \n {games}').lower()
+        
+            if choice == "jeopardy": 
+                jg = Jeopardy(0)
+                JeopardyCatalog(filename)
+                print(jg.play_jeopardy_game())
+                games.remove('jeopardy')
+                player.games_attempted += 1 
             
-        elif choice == "memory game": 
-            mg = MemoryGame(.5)
-            print(mg.mechanics())
-            games.remove('memory game')
-            player.games_attempted += 1
+            elif choice == "memory game": 
+                mg = MemoryGame(.5)
+                print(mg.mechanics())
+                games.remove("memory game")
+                player.games_attempted += 1
             
-        elif choice == "guess the number": 
-            gg = GuessTheNumber()
-            player.games_attempted += 1
-            games.remove('guess the number')
-            print(gg.mechanics_of_game())
+            elif choice == "guess the number": 
+                gg = GuessTheNumber()
+                player.games_attempted += 1
+                games.remove('guess the number')
+                print(gg.mechanics_of_game())
+
+    if player.games_won == 2 and player.games_attempted <= 3:
+        print("Congrats! You have successfully won this game!")
+        print(f'You have won {player.games_won} games and attempted {player.games_attempted} games')
+    else:
+        print("Sorry, you ran out of tries and you have lost the game. Please try again next time")
+        print(f'You have won {player.games_won} games and attempted {player.games_attempted} games')
+    
+    x = ""
+    
+    return x
         
-        else: 
-            raise ValueError ("Sorry, that is not a valid game, try again!")
+def main():
+    play_games("jeopardy.txt")
         
-def parse_args(arglist):
-    """ Parse command-line arguments.
+main()
+        
+# def parse_args(arglist):
+#     """ Parse command-line arguments.
     
-    Expect one mandatory arguments:
-        - filename: a path to a CSV file containing Jeapordy Game's questions, points, and answers
+#     Expect one mandatory arguments:
+#         - filename: a path to a CSV file containing Jeapordy Game's questions, points, and answers
     
-    Args:
-        arglist (list of str): arguments from the command line.
+#     Args:
+#         arglist (list of str): arguments from the command line.
     
-    Returns:
-        namespace: the parsed arguments, as a namespace.
-    """
-    parser = ArgumentParser()
-    parser.add_argument("filename",
-                        help="path to CSV file containing questions, points, and answers to the Jeapordy Game")
-    return parser.parse_args(arglist)
+#     Returns:
+#         namespace: the parsed arguments, as a namespace.
+#     """
+#     parser = ArgumentParser()
+#     parser.add_argument("filename",
+#                         help="path to CSV file containing questions, points, and answers to the Jeapordy Game")
+#     return parser.parse_args(arglist)
+
+# import sys
+# if __name__ == "__main__":
+#     args = parse_args(sys.argv[1:])
+#     main(args.filename)
+
+"""
+Kishan: 
+"""
