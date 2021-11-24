@@ -12,7 +12,6 @@ class HumanPlayer:
         self.games_attemped = games_attemped
 
     
-    
 class Jeopardy:
     """This class is run the jeopardy game the player has selected. 
     """
@@ -57,7 +56,14 @@ class Jeopardy:
                 user_subject = input("Which subject do you want to attempt? ").lower().strip()
                 
             if user_subject == math or user_subject == history or user_subject == pop_culture:
-                user_points = int(input("How many points do you want to attempt? ").strip())
+                check = 0
+                while check != 1:
+                    user_points = (input("How many points do you want to attempt? ").strip())
+                    check = user_points.isnumeric()
+                    if check == 1:
+                        user_points = int(user_points)
+                        break
+                    print("\nSorry that is a invalid input, try again.\n\n")
                 
             points_available = catalog.available_points(user_subject)
             
