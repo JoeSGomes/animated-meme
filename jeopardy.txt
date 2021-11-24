@@ -9,7 +9,7 @@ math,300,What is (25000/5) x 2?,10000
 math,200,What is 320 x 3?,960
 math,100,What is 10^2?,100
 history,500,Who invented the first electric automobile? (no spaces),robert anderson
-history,400,What year did the american revolution start,1775
+history,400,What year did the american revolution start?,1775
 history,300,How many presidents have there been in the US?,46
 history,200,What year did Christopher Columbus discover America?,1492
-history,100,Who gave the statue of liberty to the united states,france
+history,100,Who gave the statue of liberty to the united states?,france

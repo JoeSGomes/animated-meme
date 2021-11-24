@@ -1,6 +1,8 @@
 from argparse import ArgumentParser
 from random import randint
 
+GAMES_WON = 0
+GAMES_ATTEMPTED = 0
 
 class HumanPlayer:
     """ This class will be used throughout the 3 games that will be played by the player. 
@@ -27,8 +29,9 @@ class Jeopardy:
         self.current_points = current_points
     
     def play_jeopardy_game(self):
+        global GAMES_WON
         catalog = JeopardyCatalog("jeopardy.txt")
-        player = HumanPlayer("Kishan", 0, 0)
+
         
         while self.current_points < 3000 and catalog.total_game_available_points() > 0:
             
@@ -87,7 +90,8 @@ class Jeopardy:
                     catalog.update_dictionary(user_subject, user_points)
                     
         if self.current_points >= 3000 and catalog.total_game_available_points() > 0: 
-            player.games_won == 1
+            print("Congrats! You won the game. Good luck with your next one...")
+            GAMES_WON += 1
             
         
         x = ""
@@ -359,6 +363,7 @@ class MemoryGame:
 
 
     def mechanics(self):
+        global GAMES_WON
         dictionary_questions = {1 : "What is the first element in the periodic table? ",
                                 2 : "What is the last letter of the alphabet? ",
                                 3 : "Who was the second president of the United States? ",
@@ -384,6 +389,7 @@ class MemoryGame:
         
         if self.questions_tally > 0 and self.words_tally > 0 and index > 4:
             print("\nCongratulations! The game is over and you won! Good luck with your other games!\n")
+            GAMES_WON += 1
             
         x = ""
         return x
@@ -460,6 +466,7 @@ class GuessTheNumber:
             print(f"You already used your guesses. Reminder number is between {lower} and {upper}")
             
     def mechanics_of_game(self, lower_bound = 1, upper_bound = 50):
+        global GAMES_WON
         """
         This method handles the logic of the game
 
@@ -488,54 +495,54 @@ class GuessTheNumber:
             
         if correctly_guessed:
             print("Correct guess! You won!")
+            GAMES_WON += 1
         else:
             print("You ran out of tries; better luck next time!")
 
 
 def play_games(filename):
-    player = HumanPlayer("Kishan", 0, 0)
+    global GAMES_ATTEMPTED
+    global GAMES_WON
     games =['memory game', 'jeopardy', 'guess the number']
 
-    while player.games_won < 2 and player.games_attempted <= 3:  
-        if player.games_won < 2 and len(games) == 1:
-            print("You suck")
+    while GAMES_WON < 2 and GAMES_ATTEMPTED <= 3:  
+        if GAMES_WON < 2 and len(games) == 1:
+            print("Sorry, you have run out of attempts to play. Better luck next time")
             break
         else:
-            print(games)
-            print(f'You have won {player.games_won} games and attempted {player.games_attempted} games')
-            choice = input(f'Which game would you like to play? \n {games}').lower()
+            print(f'\nYou have won {GAMES_WON} games and attempted {GAMES_ATTEMPTED} games')
+            choice = input(f'\n\nWhich game would you like to play? \n {games}: ').strip().lower()
         
             while choice not in games:
                 print("Sorry, that game does not exist. Please try again!")
-                print(games)
-                print(f'You have won {player.games_won} games and attempted {player.games_attempted} games')
-                choice = input(f'Which game would you like to play? \n {games}').lower()
+                print(f'\nYou have won {GAMES_WON} games and attempted {GAMES_ATTEMPTED} games')
+                choice = input(f'\n\nWhich game would you like to play? \n {games}: ').strip().lower()
         
             if choice == "jeopardy": 
                 jg = Jeopardy(0)
                 JeopardyCatalog(filename)
                 print(jg.play_jeopardy_game())
                 games.remove('jeopardy')
-                player.games_attempted += 1 
+                GAMES_ATTEMPTED += 1 
             
             elif choice == "memory game": 
                 mg = MemoryGame(.5)
                 print(mg.mechanics())
                 games.remove("memory game")
-                player.games_attempted += 1
+                GAMES_ATTEMPTED += 1
             
             elif choice == "guess the number": 
                 gg = GuessTheNumber()
-                player.games_attempted += 1
+                GAMES_ATTEMPTED += 1
                 games.remove('guess the number')
                 print(gg.mechanics_of_game())
 
-    if player.games_won == 2 and player.games_attempted <= 3:
+    if GAMES_WON == 2 and GAMES_ATTEMPTED <= 3:
         print("Congrats! You have successfully won this game!")
-        print(f'You have won {player.games_won} games and attempted {player.games_attempted} games')
+        print(f'You have won {GAMES_WON} games and attempted {GAMES_ATTEMPTED} games')
     else:
         print("Sorry, you ran out of tries and you have lost the game. Please try again next time")
-        print(f'You have won {player.games_won} games and attempted {player.games_attempted} games')
+        print(f'You have won {GAMES_WON} games and attempted {GAMES_ATTEMPTED} games')
     
     x = ""
     
@@ -575,5 +582,5 @@ Kishan (3): __init()__ for jeopardy catalog, total_game_available_points(), avai
 Walter (2): hints() --> GuessTheNumber Class, play_games() method
 Joe (2): available_questions() --> JeopardyCatalog Class, play_jeopardy_game() --> Jeopardy Class
 Ariana (2): questions(), mechanics() --> MemoryGame Class
-Naila (2): mechanics_of_game() --> GuessTheNumber Class, parse_arge() method
+Naila (2): mechanics_of_game() --> GuessTheNumber Class, parse_args() method
 """
