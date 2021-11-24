@@ -106,8 +106,7 @@ class Jeopardy:
                     
         if self.current_points >= 3000 and catalog.total_game_available_points() > 0: 
             print("Congrats! You won the game. Good luck with your next one...")
-            GAMES_WON += 1
-            
+            GAMES_WON += 1         
         
         x = ""
         return x
@@ -370,12 +369,10 @@ class MemoryGame:
                   
         if self.questions_tally < 1 or self.words_tally < 1:
             print("\nSorry, that was incorrect, and you ran out of tries!\n")
-            print("\nYou lost. Better luck next time!")
-            
+            print("\nYou lost. Better luck next time!")        
         
         x = ""  
         return x  
-
 
     def mechanics(self):
         global GAMES_WON
@@ -513,7 +510,6 @@ class GuessTheNumber:
             GAMES_WON += 1
         else:
             print("You ran out of tries; better luck next time!")
-
 
 def play_games(filename):
     global GAMES_ATTEMPTED
