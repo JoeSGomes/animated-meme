@@ -492,34 +492,6 @@ class GuessTheNumber:
         else:
             print("You ran out of tries; better luck next time!")
 
-    
-            
-     
-
-
-# def main (): 
-#     games_won = 0 
-#     games_attempted = 0 
-    
-#     while games_won < 3 and games_attempted <= 3:
-#         choice = input("What game do you want to play? ")
-#         if choice == "Jeopardy": 
-#             game = Jeopardy()
-#             game.play_jeopardy()
-#             games_attempted += 1 
-            
-#         elif choice == "Memory Game": 
-#             game = MemoryGame()
-#             game.play_memory_game()
-#             games_attempted += 1 
-        
-#         elif choice == "Guess the Number": 
-#             game = GuessNumber()
-#             game.play_guess_number()
-#             games_attempted += 1 
-        
-#         else: 
-#             raise ValueError ("Sorry, that is not a valid game, try again!")
 
 def play_games(filename):
     player = HumanPlayer("Kishan", 0, 0)
