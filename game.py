@@ -33,8 +33,7 @@ class Jeopardy:
         catalog = JeopardyCatalog("jeopardy.txt")
 
         
-        while self.current_points < 3000 and catalog.total_game_available_points() > 0:
-            
+        while self.current_points < 3000 and catalog.total_game_available_points() > 0:  
             print()
             print(f'history questions available: {catalog.available_questions("history")}')
             print(f'math questions available: {catalog.available_questions("math")}')
@@ -42,7 +41,6 @@ class Jeopardy:
             
             print(f'\nYou currently have acquired {self.current_points}/3,000 points so far to win the game\n')
 
-            
             math = "math"
             history = "history"
             pop_culture = "pop culture"
@@ -50,7 +48,6 @@ class Jeopardy:
             user_subject = input("Which subject do you want to attempt? ").lower().strip()
             
             while not ((user_subject == math or user_subject == history or user_subject == pop_culture) and len(catalog.available_questions(user_subject))):
-            
                 print()
                 print("\nSorry, that is not a valid subject, please try again!\n\n")
                 
@@ -71,6 +68,11 @@ class Jeopardy:
                         user_points = int(user_points)
                         break
                     print("\nSorry that is a invalid input, try again.\n\n")
+                    
+                    print(f'history questions available: {catalog.available_questions("history")}')
+                    print(f'math questions available: {catalog.available_questions("math")}')
+                    print(f'pop culture questions available: {catalog.available_questions("pop culture")}')
+                    print(f'\nYou currently have acquired {self.current_points}/3,000 points so far to win the game\n')
                 
             points_available = catalog.available_points(user_subject)
             
