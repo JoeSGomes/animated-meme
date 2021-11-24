@@ -61,7 +61,6 @@ class Jeopardy:
                 
             if user_subject == math or user_subject == history or user_subject == pop_culture:
                 user_points = int(input("How many points do you want to attempt? ").strip())
-                
             points_available = catalog.available_points(user_subject)
             
             while user_points not in points_available:
