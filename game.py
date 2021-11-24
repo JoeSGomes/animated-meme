@@ -63,19 +63,32 @@ class Jeopardy:
                 user_subject = input("Which subject do you want to attempt? ").lower().strip()
                 
             if user_subject == math or user_subject == history or user_subject == pop_culture:
-                user_points = int(input("How many points do you want to attempt? ").strip())
+                check = 0
+                while check != 1:
+                    user_points = (input("How many points do you want to attempt? ").strip())
+                    check = user_points.isnumeric()
+                    if check == 1:
+                        user_points = int(user_points)
+                        break
+                    print("\nSorry that is a invalid input, try again.\n\n")
+                
             points_available = catalog.available_points(user_subject)
             
             while user_points not in points_available:
                 print("\nSorry that question does not exists, try again.\n\n")
-                
-                print(f'history questions available: {catalog.available_questions("history")}')
-                print(f'math questions available: {catalog.available_questions("math")}')
-                print(f'pop culture questions available: {catalog.available_questions("pop culture")}')
-                
-                print(f'\nYou currently have acquired {self.current_points}/3,000 points so far to win the game\n')
-                
-                user_points = int(input("\nHow many points do you want to attempt? ").strip())
+                check = 0
+                while check != 1 and user_points not in points_available:
+                    print(f'history questions available: {catalog.available_questions("history")}')
+                    print(f'math questions available: {catalog.available_questions("math")}')
+                    print(f'pop culture questions available: {catalog.available_questions("pop culture")}')
+                    print(f'\nYou currently have acquired {self.current_points}/3,000 points so far to win the game\n')
+                    user_points = (input("How many points do you want to attempt? ").strip())
+                    check = user_points.isnumeric()
+                    if check == 1:
+                        user_points = int(user_points)
+                        break
+                    print("\nSorry that question does not exists, try again.\n\n")
+                    
                 points_available = catalog.available_points(user_subject)
                 
             if user_points in points_available:
