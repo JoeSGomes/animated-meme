@@ -1,5 +1,7 @@
 from argparse import ArgumentParser
-from random import randint
+import random
+import time
+import sys
 
 GAMES_WON = 0
 GAMES_ATTEMPTED = 0
@@ -276,8 +278,6 @@ class JeopardyCatalog:
         del self.dictionary[subject][points]
         
 
-import time
-
 class MemoryGame:
     """
     memory game where the player has to memorize 5 words
@@ -409,7 +409,6 @@ class MemoryGame:
         x = ""
         return x
 
-import random
 class GuessTheNumber:
     """
     Class that contains all the logic related to the "Guess the number" game
@@ -562,10 +561,10 @@ def play_games(filename):
     
     return x
         
-def main():
-    play_games("jeopardy.txt")
+def main(filename):
+    play_games(filename)
         
-main()
+
         
 # def parse_args(arglist):
 #     """ Parse command-line arguments.
@@ -584,7 +583,6 @@ main()
 #                         help="path to CSV file containing questions, points, and answers to the Jeapordy Game")
 #     return parser.parse_args(arglist)
 
-# import sys
 # if __name__ == "__main__":
 #     args = parse_args(sys.argv[1:])
 #     main(args.filename)
