@@ -33,7 +33,7 @@ class Jeopardy:
         catalog = JeopardyCatalog("jeopardy.txt")
 
         
-        while self.current_points < 3000 and catalog.total_game_available_points() > 0:  
+        while self.current_points < 3000 and (self.current_points + catalog.total_game_available_points()) >= 3000:  
             print()
             print(f'history questions available: {catalog.available_questions("history")}')
             print(f'math questions available: {catalog.available_questions("math")}')
@@ -104,9 +104,12 @@ class Jeopardy:
                     print("\n\nThat was incorrect! Better luck on the next question...\n")
                     catalog.update_dictionary(user_subject, user_points)
                     
-        if self.current_points >= 3000 and catalog.total_game_available_points() > 0: 
+        if self.current_points >= 3000: 
             print("Congrats! You won the game. Good luck with your next one...")
-            GAMES_WON += 1         
+            GAMES_WON += 1 
+        else:
+            print("Sorry, you ran out of opportunities, better luck next game!")
+            print(f'\nYou ended the game with {self.current_points}/3,000 points\n')        
         
         x = ""
         return x
