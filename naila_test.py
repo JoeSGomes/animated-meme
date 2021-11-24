@@ -12,38 +12,6 @@ class GuessTheNumber:
         self.tries = tries
         self.hints_left = hints_left
 
-    def mechanics_of_game(self, lower_bound = 1, upper_bound = 50):
-        """
-        This method handles the logic of the game
-
-        Args:
-            lower_bound (int): the lower bound of the target integer. Defaults to 1
-            upper_bound (int): the upper bound of the target integer. Defaults to 50
-
-        Side effects:
-            Prints the game state and input prompts to the standard output
-            Prints the result of the game
-        """
-        target_number = random.randint(lower_bound, upper_bound)
-        print("The number you are looking for is between {} and {}".format(lower_bound, upper_bound))
-        correctly_guessed = False
-        for i in range(self.tries):
-            user_input = input("Make a guess (or type 'H' to get a hint): ")
-            if user_input == 'H':
-                self.hints(target_number)
-            else:
-                guess = int(user_input)
-                if guess == target_number:
-                    correctly_guessed = True
-                    break
-                else:
-                    print("Incorrect guess!")
-            
-        if correctly_guessed:
-            print("Correct guess! You won!")
-        else:
-            print("You ran out of tries; better luck next time!")
-
     def hints(self, target_number):
         """
         This method handles providing hints to the user
@@ -101,11 +69,44 @@ class GuessTheNumber:
             if lower < 1:
                 lower = 1
             print(f"You already used your guesses. Reminder number is between {lower} and {upper}")
-        # if self.hints_left == 0:
-        #     print("You ran out of hints, sorry!")
-        # else:
-        #     print(f'Number is between {target_number - self.hints_left*5} and {target_number + self.hints_left*5}')
-        #     self.hints_left -= 1
+            
+    def mechanics_of_game(self, lower_bound = 1, upper_bound = 50):
+        """
+        This method handles the logic of the game
 
-gtn = GuessTheNumber()
-gtn.mechanics_of_game()
+        Args:
+            lower_bound (int): the lower bound of the target integer. Defaults to 1
+            upper_bound (int): the upper bound of the target integer. Defaults to 50
+
+        Side effects:
+            Prints the game state and input prompts to the standard output
+            Prints the result of the game
+        """
+        target_number = random.randint(lower_bound, upper_bound)
+        print("The number you are looking for is between {} and {}".format(lower_bound, upper_bound))
+        correctly_guessed = False
+        i = 0
+        while i < self.tries:
+            user_input = input("Make a guess (or type 'H' to get a hint): ")
+            if user_input == 'H':
+                self.hints(target_number)
+            elif user_input.isnumeric():
+                guess = int(user_input)
+                if guess == target_number:
+                    correctly_guessed = True
+                    break
+                else:
+                    print("Incorrect guess!")
+            else:
+                print("Wrong input!")
+                continue
+            i += 1
+            
+        if correctly_guessed:
+            print("Correct guess! You won!")
+        else:
+            print("You ran out of tries; better luck next time!")
+
+if __name__ == '__main__':
+    gtn = GuessTheNumber()
+    gtn.mechanics_of_game()
