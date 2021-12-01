@@ -11,7 +11,10 @@ class HumanPlayer:
     """
     def __init__(self, name): 
         """This will contain the human player name. 
-
+       
+        Attributes:
+        name(str): This will be the player name that will be playing the games. 
+            
         Args:
             name (Str): The name of the human that will be playing the game. 
         """
@@ -22,7 +25,7 @@ class Jeopardy:
     """
     def __init__(self, current_points):
         """This fucntion will hold the current point status of the jeoparty game. 
-
+        
         Args:
             current_points (int): THe current point of the human player. 
         """
@@ -573,7 +576,6 @@ def play_games(filename):
         
 def main(filename):
     play_games(filename)
-        
 
         
 def parse_args(arglist):
