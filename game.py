@@ -8,12 +8,11 @@ GAMES_ATTEMPTED = 0
 
 class HumanPlayer:
     """ This class will be used throughout the 3 games that will be played by the player. 
+    Attributes:
+        name(str): This will be the player name that will be playing the games. 
     """
     def __init__(self, name): 
         """This will contain the human player name. 
-       
-        Attributes:
-        name(str): This will be the player name that will be playing the games. 
             
         Args:
             name (Str): The name of the human that will be playing the game. 
@@ -22,9 +21,11 @@ class HumanPlayer:
 
 class Jeopardy:
     """This class is run the jeopardy game the player has selected. 
+    Attributes:
+        current_points(str): This will be the current points gained by the player while answering the questions right.
     """
     def __init__(self, current_points):
-        """This fucntion will hold the current point status of the jeoparty game. 
+        """This function will hold the current point status of the jeoparty game. 
         
         Args:
             current_points (int): THe current point of the human player. 
