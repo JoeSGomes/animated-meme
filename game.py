@@ -9,15 +9,13 @@ GAMES_ATTEMPTED = 0
 class HumanPlayer:
     """ This class will be used throughout the 3 games that will be played by the player. 
     """
-    def __init__(self, name, games_won, games_attempted): 
+    def __init__(self, name): 
         """This will contain the human player name. 
 
         Args:
             name (Str): The name of the human that will be playing the game. 
         """
         self.name = name 
-        self.games_won = games_won
-        self.games_attempted = games_attempted
 
 class Jeopardy:
     """This class is run the jeopardy game the player has selected. 
@@ -34,8 +32,9 @@ class Jeopardy:
         global GAMES_WON
         catalog = JeopardyCatalog("jeopardy.txt")
 
+        quit = 0
         
-        while self.current_points < 3000 and (self.current_points + catalog.total_game_available_points()) >= 3000:  
+        while self.current_points < 3000 and (self.current_points + catalog.total_game_available_points()) >= 3000 and quit != 1:  
             print()
             print(f'history questions available: {catalog.available_questions("history")}')
             print(f'math questions available: {catalog.available_questions("math")}')
@@ -96,7 +95,7 @@ class Jeopardy:
                 points_available = catalog.available_points(user_subject)
                 
             if user_points in points_available:
-                user_answer = input(catalog.get_question(user_subject, user_points))
+                user_answer = input(catalog.get_question(user_subject, user_points)).lower().strip()
                 
                 if user_answer == catalog.get_answer(user_subject, user_points):
                     print( f'\nThat was correct! You got {catalog.get_points(user_points)} points\n')
@@ -495,41 +494,52 @@ class GuessTheNumber:
         target_number = random.randint(lower_bound, upper_bound)
         print("The number you are looking for is between {} and {}".format(lower_bound, upper_bound))
         correctly_guessed = False
-        for i in range(self.tries):
+        target_number = random.randint(lower_bound, upper_bound)
+        print("The number you are looking for is between {} and {}".format(lower_bound, upper_bound))
+        correctly_guessed = False
+        i = 0
+        while i < self.tries:
             user_input = input("Make a guess (or type 'H' to get a hint): ")
             if user_input == 'H':
                 self.hints(target_number)
-            else:
+            elif user_input.isnumeric():
                 guess = int(user_input)
                 if guess == target_number:
                     correctly_guessed = True
                     break
                 else:
                     print("Incorrect guess!")
+            else:
+                print("Wrong input!")
+                continue
+            i += 1
             
         if correctly_guessed:
             print("Correct guess! You won!")
-            GAMES_WON += 1
         else:
             print("You ran out of tries; better luck next time!")
-
+            
 def play_games(filename):
     global GAMES_ATTEMPTED
     global GAMES_WON
+    
     games =['memory game', 'jeopardy', 'guess the number']
-
+    
+    player_name = input("What is your name? ")
+    player = HumanPlayer(player_name)
+    
     while GAMES_WON < 2 and GAMES_ATTEMPTED <= 3:  
         if GAMES_WON < 2 and len(games) == 1:
             print("Sorry, you have run out of attempts to play. Better luck next time")
             break
         else:
             print(f'\nYou have won {GAMES_WON} games and attempted {GAMES_ATTEMPTED} games')
-            choice = input(f'\n\nWhich game would you like to play? \n {games}: ').strip().lower()
+            choice = input(f'\n\n {player.name}, which game would you like to play? \n {games}: ').strip().lower()
         
             while choice not in games:
                 print("Sorry, that game does not exist. Please try again!")
                 print(f'\nYou have won {GAMES_WON} games and attempted {GAMES_ATTEMPTED} games')
-                choice = input(f'\n\nWhich game would you like to play? \n {games}: ').strip().lower()
+                choice = input(f'\n\n {player.name}, which game would you like to play? \n {games}: ').strip().lower()
         
             if choice == "jeopardy": 
                 jg = Jeopardy(0)
@@ -551,10 +561,10 @@ def play_games(filename):
                 print(gg.mechanics_of_game())
 
     if GAMES_WON == 2 and GAMES_ATTEMPTED <= 3:
-        print("Congrats! You have successfully won this game!")
+        print(f"Congrats {player.name}! You have successfully won this game!")
         print(f'You have won {GAMES_WON} games and attempted {GAMES_ATTEMPTED} games')
     else:
-        print("Sorry, you ran out of tries and you have lost the game. Please try again next time")
+        print(f"Sorry {player.name}, you ran out of tries and you have lost the game. Please try again next time")
         print(f'You have won {GAMES_WON} games and attempted {GAMES_ATTEMPTED} games')
     
     x = ""
@@ -566,26 +576,26 @@ def main(filename):
         
 
         
-# def parse_args(arglist):
-#     """ Parse command-line arguments.
+def parse_args(arglist):
+    """ Parse command-line arguments.
     
-#     Expect one mandatory arguments:
-#         - filename: a path to a CSV file containing Jeapordy Game's questions, points, and answers
+    Expect one mandatory arguments:
+    - filename: a path to a CSV file containing Jeapordy Game's questions, points, and answers
     
-#     Args:
-#         arglist (list of str): arguments from the command line.
+        Args:
+arglist (list of str): arguments from the command line.
     
-#     Returns:
-#         namespace: the parsed arguments, as a namespace.
-#     """
-#     parser = ArgumentParser()
-#     parser.add_argument("filename",
-#                         help="path to CSV file containing questions, points, and answers to the Jeapordy Game")
-#     return parser.parse_args(arglist)
+    Returns:
+    namespace: the parsed arguments, as a namespace.
+    """
+    parser = ArgumentParser()
+    parser.add_argument("filename",
+                        help="path to CSV file containing questions, points, and answers to the Jeapordy Game")
+    return parser.parse_args(arglist)
 
-# if __name__ == "__main__":
-#     args = parse_args(sys.argv[1:])
-#     main(args.filename)
+if __name__ == "__main__":
+    args = parse_args(sys.argv[1:])
+    main(args.filename)
 
 """
 Methods Distribution:
