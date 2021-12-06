@@ -3,8 +3,8 @@ import random
 import time
 import sys
 
-GAMES_WON = 0
-GAMES_ATTEMPTED = 0
+games_won = 0
+games_attempted = 0
 
 class HumanPlayer:
     """ This class will be used throughout the 3 games that will be played by the player. 
@@ -17,7 +17,7 @@ class HumanPlayer:
         Args:
             name (Str): The name of the human that will be playing the game. 
         """
-        self.name = name 
+        self.name = name
 
 class Jeopardy:
     """This class is run the jeopardy game the player has selected. 
@@ -33,7 +33,7 @@ class Jeopardy:
         self.current_points = current_points
     
     def play_jeopardy_game(self):
-        global GAMES_WON
+        global games_won
         catalog = JeopardyCatalog("jeopardy.txt")
 
         quit = 0
@@ -111,7 +111,7 @@ class Jeopardy:
                     
         if self.current_points >= 3000: 
             print("Congrats! You won the game. Good luck with your next one...")
-            GAMES_WON += 1 
+            games_won += 1 
         else:
             print("Sorry, you ran out of opportunities, better luck next game!")
             print(f'\nYou ended the game with {self.current_points}/3,000 points\n')        
@@ -198,23 +198,11 @@ class JeopardyCatalog:
     def total_game_available_points(self):
         total_points = 0
         
-        history_points = self.dictionary.get("history")
-        points = history_points.keys()
-        for i in points:
-            total_points += i
-            
-        math_points = self.dictionary.get("math")
-        points_m = math_points.keys()
-        for i in points_m:
-            total_points += i
-            
-        pop_culture_points = self.dictionary.get("pop culture")
-        points_pc = pop_culture_points.keys()
-        for i in points_pc:
-            total_points += i
+        for key in self.dictionary:
+            total_points += sum(self.dictionary[key])
             
         return total_points
-                
+        
     def get_question(self, subject, points):
         """
         gets the question from the catalog that is named
@@ -381,7 +369,7 @@ class MemoryGame:
         return x  
 
     def mechanics(self):
-        global GAMES_WON
+        global games_won
         dictionary_questions = {1 : "What is the first element in the periodic table? ",
                                 2 : "What is the last letter of the alphabet? ",
                                 3 : "Who was the second president of the United States? ",
@@ -407,7 +395,7 @@ class MemoryGame:
         
         if self.questions_tally > 0 and self.words_tally > 0 and index > 4:
             print("\nCongratulations! The game is over and you won! Good luck with your other games!\n")
-            GAMES_WON += 1
+            games_won += 1
             
         x = ""
         return x
@@ -483,7 +471,7 @@ class GuessTheNumber:
             print(f"You already used your guesses. Reminder number is between {lower} and {upper}")
             
     def mechanics_of_game(self, lower_bound = 1, upper_bound = 50):
-        global GAMES_WON
+        global games_won
         """
         This method handles the logic of the game
 
@@ -524,25 +512,25 @@ class GuessTheNumber:
             print("You ran out of tries; better luck next time!")
             
 def play_games(filename):
-    global GAMES_ATTEMPTED
-    global GAMES_WON
+    global games_attempted
+    global games_won
     
     games =['memory game', 'jeopardy', 'guess the number']
     
     player_name = input("What is your name? ")
     player = HumanPlayer(player_name)
     
-    while GAMES_WON < 2 and GAMES_ATTEMPTED <= 3:  
-        if GAMES_WON < 2 and len(games) == 1:
+    while games_won < 2 and games_attempted <= 3:  
+        if games_won < 2 and len(games) == 1:
             print("Sorry, you have run out of attempts to play. Better luck next time")
             break
         else:
-            print(f'\nYou have won {GAMES_WON} games and attempted {GAMES_ATTEMPTED} games')
+            print(f'\nYou have won {games_won} games and attempted {games_attempted} games')
             choice = input(f'\n\n {player.name}, which game would you like to play? \n {games}: ').strip().lower()
         
             while choice not in games:
                 print("Sorry, that game does not exist. Please try again!")
-                print(f'\nYou have won {GAMES_WON} games and attempted {GAMES_ATTEMPTED} games')
+                print(f'\nYou have won {games_won} games and attempted {games_attempted} games')
                 choice = input(f'\n\n {player.name}, which game would you like to play? \n {games}: ').strip().lower()
         
             if choice == "jeopardy": 
@@ -550,33 +538,30 @@ def play_games(filename):
                 JeopardyCatalog(filename)
                 print(jg.play_jeopardy_game())
                 games.remove('jeopardy')
-                GAMES_ATTEMPTED += 1 
+                games_attempted += 1 
             
             elif choice == "memory game": 
                 mg = MemoryGame(.5)
                 print(mg.mechanics())
                 games.remove("memory game")
-                GAMES_ATTEMPTED += 1
+                games_attempted += 1
             
             elif choice == "guess the number": 
                 gg = GuessTheNumber()
-                GAMES_ATTEMPTED += 1
+                games_attempted += 1
                 games.remove('guess the number')
                 print(gg.mechanics_of_game())
 
-    if GAMES_WON == 2 and GAMES_ATTEMPTED <= 3:
+    if games_won == 2 and games_attempted <= 3:
         print(f"Congrats {player.name}! You have successfully won this game!")
-        print(f'You have won {GAMES_WON} games and attempted {GAMES_ATTEMPTED} games')
+        print(f'You have won {games_won} games and attempted {games_attempted} games')
     else:
         print(f"Sorry {player.name}, you ran out of tries and you have lost the game. Please try again next time")
-        print(f'You have won {GAMES_WON} games and attempted {GAMES_ATTEMPTED} games')
+        print(f'You have won {games_won} games and attempted {games_attempted} games')
     
     x = ""
     
     return x
-        
-def main(filename):
-    play_games(filename)
 
         
 def parse_args(arglist):
@@ -598,12 +583,12 @@ arglist (list of str): arguments from the command line.
 
 if __name__ == "__main__":
     args = parse_args(sys.argv[1:])
-    main(args.filename)
+    play_games(args.filename)
 
 """
 Methods Distribution:
 
-Kishan (3): __init()__ for jeopardy catalog, total_game_available_points(), available_points() --> JeopardyCatalog Class
+Kishan (3): __init()__ for jeopardy catalog, total_game_available_points() --> JeopardyCatalog Class
 Walter (2): hints() --> GuessTheNumber Class, play_games() method
 Joe (2): available_questions() --> JeopardyCatalog Class, play_jeopardy_game() --> Jeopardy Class
 Ariana (2): questions(), mechanics() --> MemoryGame Class
