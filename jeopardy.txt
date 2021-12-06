@@ -3,7 +3,7 @@ pop culture,400,Who plays Zack in the TV show ‘Zack and Cody’?,dylan sprouse
 pop culture,300,How many fast and furious movies are there?,9
 pop culture,200,Who is Jay-Z’s wife?,beyonce
 pop culture,100,What is Justin Bieber’s top song?,baby
-math,500,What is the derivative of 60x^2?,120
+math,500,What is the derivative of 60x^2?,120x
 math,400,What is (40^2) x 8?,12800
 math,300,What is (25000/5) x 2?,10000
 math,200,What is 320 x 3?,960
