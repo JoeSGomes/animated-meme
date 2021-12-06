@@ -429,8 +429,8 @@ class GuessTheNumber:
             upper = target_number + 20
             lower = target_number - 20 
             
-            if upper > 50:
-                upper = 50
+            if upper > 100:
+                upper = 100
             if lower < 1:
                 lower = 1
                 
@@ -441,8 +441,8 @@ class GuessTheNumber:
             upper = target_number + 10
             lower = target_number - 10 
             
-            if upper > 50:
-                upper = 50
+            if upper > 100:
+                upper = 100
             if lower < 1:
                 lower = 1
             print (f"Number is between {lower} and {upper}\n")
@@ -453,8 +453,8 @@ class GuessTheNumber:
             upper = target_number + 5
             lower = target_number - 5 
             
-            if upper > 50:
-                upper = 50
+            if upper > 100:
+                upper = 100
             if lower < 1:
                 lower = 1
             print (f"Number is between {lower} and {upper}\n")
@@ -464,20 +464,20 @@ class GuessTheNumber:
             upper = target_number + 5
             lower = target_number - 5 
             
-            if upper > 50:
-                upper = 50
+            if upper > 100:
+                upper = 100
             if lower < 1:
                 lower = 1
             print(f"You already used your guesses. Reminder number is between {lower} and {upper}")
             
-    def mechanics_of_game(self, lower_bound = 1, upper_bound = 50):
+    def mechanics_of_game(self, lower_bound = 1, upper_bound = 100):
         global games_won
         """
         This method handles the logic of the game
 
         Args:
             lower_bound (int): the lower bound of the target integer. Defaults to 1
-            upper_bound (int): the upper bound of the target integer. Defaults to 50
+            upper_bound (int): the upper bound of the target integer. Defaults to 100
 
         Side effects:
             Prints the game state and input prompts to the standard output
