@@ -544,8 +544,10 @@ def play_games(filename):
     player_name = input("What is your name? ")
     player = HumanPlayer(player_name)
     
-    while games_won < 2 and games_attempted <= 3:  
-        if games_won < 2 and len(games) == 1:
+    while games_won < 2 and games_attempted < 4:  
+        if games_won < 1 and len(games) == 1:
+            break
+        elif games_won <= 1 and len(games) < 1:
             break
         else:
             print(f'\nYou have won {games_won} games and attempted {games_attempted} games')
@@ -575,7 +577,7 @@ def play_games(filename):
                 games.remove('guess the number')
                 print(gg.mechanics_of_game())
 
-    if games_won == 2 and games_attempted <= 3:
+    if games_won == 2 and games_attempted < 4:
         print(f"Congrats {player.name}! You have successfully won this game!")
         print(f'You have won {games_won} games and attempted {games_attempted} games')
     else:
