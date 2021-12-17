@@ -519,6 +519,7 @@ class GuessTheNumber:
             
         if correctly_guessed:
             print("Correct guess! You won!")
+            games_won += 1
         else:
             print("You ran out of tries; better luck next time!")
         
