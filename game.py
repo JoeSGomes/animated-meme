@@ -167,7 +167,8 @@ class JeopardyCatalog:
             
                 
     def available_questions(self, subject):
-        """This method will be used to check which questions are available and from the dictionary, this will be displayed to the user.
+        """
+        This method will be used to check which questions are available and from the dictionary, this will be displayed to the user.
 
         Args:
         subject (string): The subject is the type of question that can be choosen. 
@@ -183,7 +184,8 @@ class JeopardyCatalog:
         return l
     
     def available_points(self, subject):
-        """This method will be used to check which questions are available and from the dictionary, this will be displayed to the user.
+        """
+        This method will be used to check which questions are available and from the dictionary, this will be displayed to the user.
 
         Args:
         subject (string): The subject is the type of question that can be choosen. 
@@ -208,7 +210,7 @@ class JeopardyCatalog:
         
     def get_question(self, subject, points):
         """
-        gets the question from the catalog that is named
+        Gets the question from the catalog that is named
         Args:
             subject (string): the topic of the user has chosen to answer
             points(int): the amount of points for the question that the user has chosen to answer
@@ -224,7 +226,7 @@ class JeopardyCatalog:
     
     def get_answer(self, subject, points):
         """
-        gets the answer from the catalog that is named
+        Gets the answer from the catalog that is named
         Args:
             subject (string): the topic of the user has chosen to answer
             points(int): the amount of points for the question that the user has chosen to answer
@@ -238,7 +240,7 @@ class JeopardyCatalog:
     
     def get_points(self, points):
         """
-        gets the points from the catalog that is named
+        Gets the points from the catalog that is named
         Args:
             subject (string): the topic of the user has chosen to answer
             points(int): the amount of points for the question that the user has chosen to answer
@@ -251,7 +253,7 @@ class JeopardyCatalog:
     
     def update_dictionary(self, subject, points):
         """
-        updates the dictionary by deleting the question the user chose
+        Updates the dictionary by deleting the question the user chose
         
         Args:
             subject (string): the topic of the user has chosen to answer
@@ -265,7 +267,8 @@ class JeopardyCatalog:
 
 class MemoryGame:
     """
-    memory game where the player has to memorize 5 words
+    Memory game where the player has to memorize 5 words
+    
     Attributes:
         words(list): words to memorize
         t(int): time interval in seconds
@@ -277,7 +280,8 @@ class MemoryGame:
         self.words_tally = words_tally
     def display_words(self, index):
         """
-        displays  five words for the player to memorize, separated by t sec intervals
+        Displays five words for the player to memorize, separated by t sec intervals
+        
         Args:
             index(int): location of the word we are referring to in words
             
@@ -315,11 +319,15 @@ class MemoryGame:
         
     def questions(self, index, question, question_answer):
         """
-        allows user to answer five questions to throw them off reciting the words from memory
+        Allows user to answer five questions to throw them off reciting the words from memory
+        
         Args:
             i(int): index for word in words
             q(string): question for the user to answer
             a(string): correct answer
+            
+        Returns:
+            x (str): returns an empty string
         """
 
         word_answer = self.words[index]
@@ -518,6 +526,15 @@ class GuessTheNumber:
         return x
             
 def play_games(filename):
+    """
+    Controls the whole game and allows the user to play
+    
+    Args:
+        filename: a file that has the jeopardy game questions, answers, points, and subject on each row
+    
+    Returns:
+            x (str): returns an empty string
+    """
     global games_attempted
     global games_won
     
@@ -574,13 +591,13 @@ def parse_args(arglist):
     """ Parse command-line arguments.
     
     Expect one mandatory arguments:
-    - filename: a path to a CSV file containing Jeapordy Game's questions, points, and answers
+        filename: a path to a CSV file containing Jeapordy Game's questions, points, and answers
     
-        Args:
-arglist (list of str): arguments from the command line.
+    Args:
+        arglist (list of str): arguments from the command line.
     
     Returns:
-    namespace: the parsed arguments, as a namespace.
+        namespace: the parsed arguments, as a namespace.
     """
     parser = ArgumentParser()
     parser.add_argument("filename",
