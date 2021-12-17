@@ -546,7 +546,6 @@ def play_games(filename):
     
     while games_won < 2 and games_attempted <= 3:  
         if games_won < 2 and len(games) == 1:
-            print("Sorry, you have run out of attempts to play. Better luck next time")
             break
         else:
             print(f'\nYou have won {games_won} games and attempted {games_attempted} games')
