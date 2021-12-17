@@ -29,6 +29,9 @@ class Jeopardy:
         
         Args:
             current_points (int): THe current point of the human player. 
+            
+        Returns:
+            x (str): returns an empty string
         """
         self.current_points = current_points
     
@@ -211,10 +214,7 @@ class JeopardyCatalog:
             points(int): the amount of points for the question that the user has chosen to answer
         
         Returns:
-            the cooresponding question the user has requested
-        
-        Raises:
-            KeyError: if the name of the subject is not in the catalog
+            question: the cooresponding question the user has requested
         """
         
 
@@ -230,10 +230,7 @@ class JeopardyCatalog:
             points(int): the amount of points for the question that the user has chosen to answer
             
         Returns:
-            the cooresponding answer the user has requested
-        
-        Raises:
-            KeyError: if the name of the subject is not in the catalog
+            answer: the cooresponding answer the user has requested
         """
         answer = self.dictionary[subject][points][1]
             
@@ -247,10 +244,7 @@ class JeopardyCatalog:
             points(int): the amount of points for the question that the user has chosen to answer
             
         Returns:
-            the cooresponding points for the question the user has requested
-        
-        Raises:
-            KeyError: if the name of the subject is not in the catalog
+            points: the cooresponding points for the question the user has requested
         """
         
         return points
@@ -286,6 +280,9 @@ class MemoryGame:
         displays  five words for the player to memorize, separated by t sec intervals
         Args:
             index(int): location of the word we are referring to in words
+            
+        Returns:
+            x (str): returns an empty string
         """
         print("\n")
         print("\n")
@@ -420,6 +417,9 @@ class GuessTheNumber:
             target_number (int): the target number of the game (i.e. the number that the
                 user is trying to guess)
 
+        Returns:
+            x (str): returns an empty string
+            
         Side effects:
             Prints a hint to the standard output
             Updates the number of hints left
@@ -470,6 +470,9 @@ class GuessTheNumber:
                 lower = 1
             print(f"You already used your guesses. Reminder number is between {lower} and {upper}")
             
+        x = ""
+        return x
+            
     def mechanics_of_game(self, lower_bound = 1, upper_bound = 100):
         global games_won
         """
@@ -478,14 +481,14 @@ class GuessTheNumber:
         Args:
             lower_bound (int): the lower bound of the target integer. Defaults to 1
             upper_bound (int): the upper bound of the target integer. Defaults to 100
+            
+        Returns:
+            x (str): returns an empty string
 
         Side effects:
             Prints the game state and input prompts to the standard output
             Prints the result of the game
         """
-        target_number = random.randint(lower_bound, upper_bound)
-        print("The number you are looking for is between {} and {}".format(lower_bound, upper_bound))
-        correctly_guessed = False
         target_number = random.randint(lower_bound, upper_bound)
         print("The number you are looking for is between {} and {}".format(lower_bound, upper_bound))
         correctly_guessed = False
@@ -510,6 +513,9 @@ class GuessTheNumber:
             print("Correct guess! You won!")
         else:
             print("You ran out of tries; better luck next time!")
+        
+        x = ""
+        return x
             
 def play_games(filename):
     global games_attempted
