@@ -289,8 +289,6 @@ class MemoryGame:
             x (str): returns an empty string
         """
         
-        # tutorial referenced: https://www.programiz.com/python-programming/time/sleep
-        
         print("\n")
         print("\n")
         print("\n")
@@ -332,7 +330,6 @@ class MemoryGame:
         Returns:
             x (str): returns an empty string
         """
-        # code referenced: https://stackoverflow.com/questions/55009441/python-while-loop-number-guessing-game-with-limited-guesses
 
         word_answer = self.words[index]
         word_user_answer = ""
